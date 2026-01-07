@@ -23,6 +23,54 @@
 
 **Purpose**: Remove or replace characters in strings efficiently
 
+**What `str.maketrans()` Does**:
+`str.maketrans()` creates a translation table - a mapping that tells Python how to transform characters.
+
+**Syntax**: `str.maketrans(from, to, delete)`
+- **from**: Characters to replace FROM
+- **to**: Characters to replace TO  
+- **delete**: Characters to DELETE
+
+**How It Works**:
+```python
+# Example: Remove punctuation
+translator = str.maketrans('', '', string.punctuation)
+# Creates mapping: {33: None, 34: None, 44: None, ...}
+# Meaning: ASCII codes of punctuation → None (delete)
+
+# Example: Replace vowels
+replace_table = str.maketrans('aeiou', '12345')
+# Creates: {97: 49, 101: 50, 105: 51, 111: 52, 117: 53}
+# Meaning: 'a'→'1', 'e'→'2', 'i'→'3', 'o'→'4', 'u'→'5'
+```
+
+**Key Point**: `maketrans()` creates the "rules" - `translate()` applies them.
+
+**Important Limitation**: Works only with **individual characters**, not whole words.
+
+**For Word Replacement, Use**:
+- **`str.replace()`**: Simple word replacement
+- **`re.sub()`**: Pattern-based word replacement
+
+```python
+# ✅ Character-level (translate works)
+translator = str.maketrans('aeiou', '12345')
+text = "hello"
+result = text.translate(translator)  # "h2ll4"
+
+# ❌ Word-level (translate won't work)
+# Can't do: str.maketrans('hello', 'goodbye')
+
+# ✅ Use replace() for words
+text = "hello world hello"
+result = text.replace('hello', 'goodbye')  # "goodbye world goodbye"
+
+# ✅ Use re.sub() for pattern matching
+import re
+text = "The cat and the dog"
+result = re.sub(r'\bcat\b', 'dog', text)  # "The dog and the dog"
+```
+
 ```python
 import string
 
@@ -31,6 +79,7 @@ text = "Hello, World! How are you?"
 
 # Remove punctuation
 translator = str.maketrans('', '', string.punctuation)
+# string.punctuation contains: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
 clean_text = text.translate(translator)
 print(clean_text)  # "Hello World How are you"
 
@@ -111,6 +160,17 @@ text = "Hello, world! How are you?"
 tokens = advanced_tokenize(text)
 print(tokens)  # ['hello', ',', 'world', '!', 'how', 'are', 'you', '?']
 ```
+
+**How `re.findall()` Works**:
+- **`re.findall(pattern, string)`**: Finds ALL matches of pattern in string, returns as list
+- **Pattern `r'\b\w+\b|[.,!?;]'`**:
+  - `\b\w+\b`: Matches whole words (word boundaries + word characters)
+  - `|`: OR operator
+  - `[.,!?;]`: Matches specific punctuation
+- **Spaces are ignored**: Not in pattern, so they're skipped
+- **Word boundaries (`\b`)**: Automatically separate words from punctuation
+
+**Result**: Words and punctuation become separate tokens, perfect for NLP tasks.
 
 ---
 
