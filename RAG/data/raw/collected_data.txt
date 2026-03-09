@@ -1,0 +1,1435 @@
+Source: C:\Users\Administrator\Downloads\sravanResume.pdf
+Type: pdf
+Content:
+Pentakota V S Sravan Kumar
+Phone-Alt+91 7075263778 jEnvelopevsskumar2479@gmail.com jMap-marker-altHyderabad, India
+PROFESSIONAL SUMMARY
+Generative AI Engineer with 2+ years of experience leading development of autonomous agent platforms and scalable ML
+systems on AWS. Proven technical leadership in guiding engineering teams to architect and deploy production-grade
+GenAI solutions. Deep expertise in RAG architecture, LLM/NLP/NLU, AI Agents, and ML Ops with AWS Bedrock
+AgentCore. Hands-on proﬁciency in Python, AWS Cloud (Bedrock, SageMaker), and CI/CD pipelines. Demonstrated ability
+to review and debug secure, high-quality production code while driving innovation in machine learning platform design and
+advanced analytics.
+EXPERIENCE
+Virtusa Jan. 2024 – Present
+Associate Engineer – Technology Hyderabad, India
+Led engineering team in architecting scalable ML platform automating SDLC and cloud operations, reducing manual
+intervention by 40% through multi-agent AI ecosystem
+Guided technical design and code reviews for production-grade agent orchestration using AWS Bedrock AgentCore
+with persistent memory backed by DynamoDB and S3
+Engineered high-concurrency streaming AI platform (FastAPI + React + Python) handling 5,000+ agent sessions
+daily, integrating NLP/NLU capabilities for intelligent workﬂow automation
+Established ML Ops best practices with AWS Bedrock AgentCore, implementing CI/CD pipelines for continuous agent
+deployment, monitoring, and validation across development lifecycle
+Developed and debugged secure MCP servers integrating AWS SSM for real-time cloud automation with IAM-based
+least-privilege execution model
+Optimized context window management and response generation, improving inference latency by 30% through
+advanced analytics and performance tuning
+Reduced hallucinations by 25% through structured prompt engineering, guardrail tuning, and response validation
+strategies
+PROJECTS
+Enterprise GenAI Application Generation & Agent Orchestration Platform
+Led development of enterprise GenAI platform enabling autonomous generation of production-ready full-stack
+applications using Amazon Q Developer and Amazon Bedrock for British Telecom (BT)
+Architected ﬂexible, scalable ML platform using Python, React, and FastAPI to orchestrate AI Agents, MCP tools, and
+real-time LLM workﬂows with integrated NLU capabilities
+Implemented ML Ops framework with AWS Bedrock AgentCore, building CI/CD pipelines for automated testing,
+deployment, and monitoring of agent workﬂows following SDLC best practices
+Designed scalable state management with DynamoDB and S3 to persist agent context, metadata, and generated
+outputs
+Reviewed and debugged production code, optimizing model responses through iterative prompt engineering and
+guardrails
+Agentic AI Framework for Code Intelligence & Scalable Deployment
+Architected and deployed scalable AI agent infrastructure using Anthropic Claude via Amazon Bedrock, automating
+TDD/BDD documentation and code analysis with advanced NLP/NLU processing for Virtusa
+Built ﬂexible ML platform with AWS Bedrock AgentCore, integrating AgentCoreMCPClient to secure and manage
+sequential tools via Model Context Protocol (MCP) and AWS Cognito
+Established ML Ops workﬂows with AWS Bedrock AgentCore and CI/CD pipelines for continuous integration,
+automated testing, and deployment of LLM-based agents following SDLC best practices
+Optimized context window eﬃciency for long-term memory using custom SummarizingConversationManager with
+tailored summary_ratio and preserve_recent_messages logic, backed by S3/DynamoDB
+Integrated Human-in-the-Loop safety protocols and enforced security with Bedrock Guardrails, utilizing CloudWatch
+for real-time monitoring and violation tracking
+GenAI-Powered ServiceNow Ticket Automation
+Engineered AI Agent with RAG architecture to automate incident triage, resolution, and escalation for BMO (POC),
+replacing manual ServiceNow ticket routing with intelligent NLU-powered workﬂow
+Architected OpenSearch-based RAG pipeline for retrieval-augmented generation, retrieving historical ticket
+resolutions and knowledge base articles to enhance LLM response accuracy and reduce resolution time
+Developed and deployed SLM via AWS SageMaker with ML Ops best practices, implementing CI/CD pipelines for
+model versioning, monitoring, and high-performance inference endpoints for real-time ticket processing
+Reviewed and debugged production code to ensure secure, high-quality model deployment and automated KEDB
+updates
+EDUCATION
+Lovely Professional University 2019 – 2023
+Bachelor of Technology in Computer Science (CSE) Punjab, India
+CERTIFICATIONS
+AWS Certiﬁed Developer – Associate : Credential ID: 6c80aed4834041f685e2c497486d2054
+AWS Certiﬁed AI Practitioner : Credential ID: f2b6dbd5f5534e23a61dc4310be0ba4d
+Google Associate Cloud Engineer : Credential ID: 69985623
+SKILLS
+Generative AI & ML : RAG (Retrieval-Augmented Generation), AI/Agents, LLM (Large Language Models), NLP (Natural
+Language Processing), NLU (Natural Language Understanding), Prompt Engineering
+Machine Learning & Analytics : ML Platform Architecture, Big Data Processing, Advanced Analytics, Model Deployment
+ML Ops & DevOps : ML Ops with AWS Bedrock AgentCore, CI/CD Pipelines, SDLC Best Practices, Kubernetes, Model
+Monitoring
+Cloud & AWS : AWS Cloud (Bedrock, SageMaker, Lambda, S3, DynamoDB, SSM, IAM, CloudWatch), Scalable Solution
+Deployment
+Technical Stack : Python (Software & Model Development), FastAPI, React, SQL, Java
+--------------------------------------------------------------------------------
+
+Source: https://google.github.io/adk-docs/get-started/python/
+Type: url
+Content:
+Python - Agent Development Kit (ADK)
+Agent Development Kit (ADK)
+Skip to content
+Agent Development Kit (ADK)
+Python
+Initializing search
+adk-python
+adk-js
+adk-go
+adk-java
+adk-python
+adk-js
+adk-go
+adk-java
+Home
+Home
+Build Agents
+Build Agents
+Get Started
+Get Started
+Python
+Python
+Table of contents
+Installation
+Create an agent project
+Explore the agent project
+Update your agent project
+Set your API key
+Run your agent
+Run with command-line interface
+Run with web interface
+Next: Build your agent
+TypeScript
+Go
+Java
+Build your Agent
+Build your Agent
+Multi-tool agent
+Agent team
+Streaming agent
+Streaming agent
+Python
+Java
+Visual Builder
+Coding with AI
+Advanced setup
+Agents
+Agents
+LLM agents
+Workflow agents
+Workflow agents
+Sequential agents
+Loop agents
+Parallel agents
+Custom agents
+Multi-agent systems
+Agent Config
+Models for Agents
+Models for Agents
+Gemini
+Claude
+Vertex AI hosted
+Apigee AI Gateway
+Ollama
+vLLM
+LiteLLM
+LiteRT-LM
+Tools and Integrations
+Tools and Integrations
+Custom Tools
+Custom Tools
+Function tools
+Function tools
+Overview
+Tool performance
+Action confirmations
+MCP tools
+OpenAPI tools
+Authentication
+Tool limitations
+Skills for Agents
+Skills for Agents
+Run Agents
+Run Agents
+Agent Runtime
+Agent Runtime
+Web Interface
+Command Line
+API Server
+Resume Agents
+Runtime Config
+Event Loop
+Deployment
+Deployment
+Agent Engine
+Agent Engine
+Standard deployment
+Agent Starter Pack
+Test deployed agents
+Cloud Run
+GKE
+Observability
+Observability
+Logging
+Evaluation
+Evaluation
+Criteria
+User Simulation
+Safety and Security
+Safety and Security
+Components
+Components
+Technical Overview
+Context
+Context
+Context caching
+Context compression
+Sessions & Memory
+Sessions & Memory
+Sessions
+Sessions
+Rewind sessions
+Migrate sessions
+State
+Memory
+Callbacks
+Callbacks
+Types of callbacks
+Callback patterns
+Artifacts
+Artifacts
+Events
+Events
+Apps
+Apps
+Plugins
+Plugins
+MCP
+MCP
+A2A Protocol
+A2A Protocol
+Introduction to A2A
+A2A Quickstart (Exposing)
+A2A Quickstart (Exposing)
+Python
+Go
+A2A Quickstart (Consuming)
+A2A Quickstart (Consuming)
+Python
+Go
+Gemini Live API Toolkit
+Gemini Live API Toolkit
+Gemini Live API Toolkit development guide series
+Gemini Live API Toolkit development guide series
+Part 1. Intro to streaming
+Part 2. Sending messages
+Part 3. Event handling
+Part 4. Run configuration
+Part 5. Audio, Images, and Video
+Streaming Tools
+Configuring streaming behavior
+Grounding
+Grounding
+Google Search Grounding
+Vertex AI Search Grounding
+Reference
+Reference
+Release Notes
+API Reference
+API Reference
+Python ADK
+Typescript ADK
+Go ADK
+Java ADK
+CLI Reference
+Agent Config Reference
+REST API
+Community Resources
+Contributing Guide
+Table of contents
+Installation
+Create an agent project
+Explore the agent project
+Update your agent project
+Set your API key
+Run your agent
+Run with command-line interface
+Run with web interface
+Next: Build your agent
+Build Agents
+Get Started
+Python Quickstart for ADK
+¶
+This guide shows you how to get up and running with Agent Development Kit
+(ADK) for Python. Before you start, make sure you have the following installed:
+Python 3.10 or later
+pip
+for installing packages
+Installation
+¶
+Install ADK by running the following command:
+pip
+install
+google-adk
+Recommended: create and activate a Python virtual environment
+Create a Python virtual environment:
+python
+-m
+venv
+.venv
+Activate the Python virtual environment:
+Windows CMD
+Windows Powershell
+MacOS / Linux
+.venv\Scripts\activate.bat
+.venv\Scripts\Activate.ps1
+source
+.venv/bin/activate
+Create an agent project
+¶
+Run the
+adk create
+command to start a new agent project.
+adk
+create
+my_agent
+Explore the agent project
+¶
+The created agent project has the following structure, with the
+agent.py
+file containing the main control code for the agent.
+my_agent/
+agent.py      # main agent code
+.env          # API keys or project IDs
+__init__.py
+Update your agent project
+¶
+The
+agent.py
+file contains a
+root_agent
+definition which is the only
+required element of an ADK agent. You can also define tools for the agent to
+use. Update the generated
+agent.py
+code to include a
+get_current_time
+tool
+for use by the agent, as shown in the following code:
+from
+google.adk.agents.llm_agent
+import
+Agent
+# Mock tool implementation
+def
+get_current_time
+(
+city
+:
+str
+)
+->
+dict
+:
+"""Returns the current time in a specified city."""
+return
+{
+"status"
+:
+"success"
+,
+"city"
+:
+city
+,
+"time"
+:
+"10:30 AM"
+}
+root_agent
+=
+Agent
+(
+model
+=
+'gemini-3-flash-preview'
+,
+name
+=
+'root_agent'
+,
+description
+=
+"Tells the current time in a specified city."
+,
+instruction
+=
+"You are a helpful assistant that tells the current time in cities. Use the 'get_current_time' tool for this purpose."
+,
+tools
+=
+[
+get_current_time
+],
+)
+Set your API key
+¶
+This project uses the Gemini API, which requires an API key. If you
+don't already have Gemini API key, create a key in Google AI Studio on the
+API Keys
+page.
+In a terminal window, write your API key into an
+.env
+file as an environment variable:
+Update: my_agent/.env
+echo 'GOOGLE_API_KEY="YOUR_API_KEY"' > .env
+Using other AI models with ADK
+ADK supports the use of many generative AI models. For more
+information on configuring other models in ADK agents, see
+Models & Authentication
+.
+Run your agent
+¶
+You can run your ADK agent with an interactive command-line interface using the
+adk run
+command or the ADK web user interface provided by the ADK using the
+adk web
+command. Both these options allow you to test and interact with your
+agent.
+Run with command-line interface
+¶
+Run your agent using the
+adk run
+command-line tool.
+adk run my_agent
+Run with web interface
+¶
+The ADK framework provides web interface you can use to test and interact with
+your agent. You can start the web interface using the following command:
+adk web --port 8000
+Note
+Run this command from the
+parent directory
+that contains your
+my_agent/
+folder. For example, if your agent is inside
+agents/my_agent/
+,
+run
+adk web
+from the
+agents/
+directory.
+This command starts a web server with a chat interface for your agent. You can
+access the web interface at (http://localhost:8000). Select the agent at the
+upper left corner and type a request.
+Caution: ADK Web for development only
+ADK Web is
+not meant for use in production deployments
+. You should
+use ADK Web for development and debugging purposes only.
+Next: Build your agent
+¶
+Now that you have ADK installed and your first agent running, try building
+your own agent with our build guides:
+Build your agent
+Back to top
+Previous
+Get started
+Next
+TypeScript
+Copyright Google 2026  |
+Terms
+|
+Privacy
+|
+Manage cookies
+Made with
+Material for MkDocs
+Cookie consent
+We use cookies to recognize repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find the information they need. With your consent, you're helping us to make our documentation better.
+Google Analytics
+GitHub
+Accept
+Manage settings
+--------------------------------------------------------------------------------
+
+Source: C:\Users\Administrator\Desktop\agent.txt
+Type: text
+Content:
+"""AgentCore router for Bedrock agent runtime integration"""
+import json
+import re
+import uuid
+import boto3
+import asyncio
+import os
+from typing import Dict, List, Optional, Any
+from fastapi import APIRouter, HTTPException
+from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
+from database.dynamodb_client import db_client
+from datetime import datetime, timezone
+from botocore.exceptions import ClientError
+
+router = APIRouter(prefix="/agentcore", tags=["agentcore"])
+
+# In-memory session storage (use Redis/DB in production)
+sessions: Dict[str, List[Dict]] = {}
+
+class DynamicSessionManager:
+    def __init__(self, bucket: str, folder_name: str, region: str = "us-east-1"):
+        self.bucket = bucket
+        self.folder_name = folder_name.rstrip('/')
+        self.s3 = boto3.client('s3', region_name=region)
+
+    def list_sessions(self) -> List[Dict[str, Any]]:
+        sessions = []
+        try:
+            paginator = self.s3.get_paginator('list_objects_v2')
+            for page in paginator.paginate(Bucket=self.bucket, Prefix=f"{self.folder_name}/"):
+                for obj in page.get('Contents', []):
+                    if '/session.json' in obj['Key']:
+                        session_id = self._extract_session_id(obj['Key'])
+                        if session_id:
+                            session_data = self._read_json(obj['Key'])
+                            if session_data:
+                                session_data['session_id'] = session_id
+                                sessions.append(session_data)
+        except ClientError:
+            pass
+        return sessions
+
+    def get_session(self, session_id: str) -> Optional[Dict[str, Any]]:
+        session_key = f"{self.folder_name}//session_{session_id}/session.json"
+        session_data = self._read_json(session_key)
+        if session_data:
+            session_data['session_id'] = session_id
+        return session_data
+
+    def get_session_messages(self, session_id: str) -> List[Dict[str, Any]]:
+        messages = []
+        messages_prefix = f"{self.folder_name}//session_{session_id}/agents/agent_default/messages/"
+        try:
+            paginator = self.s3.get_paginator('list_objects_v2')
+            for page in paginator.paginate(Bucket=self.bucket, Prefix=messages_prefix):
+                for obj in page.get('Contents', []):
+                    if obj['Key'].endswith('.json'):
+                        message_data = self._read_json(obj['Key'])
+                        if message_data:
+                            filename = obj['Key'].split('/')[-1]
+                            if filename.startswith('message_'):
+                                index = int(filename.replace('message_', '').replace('.json', ''))
+                                message_data['message_index'] = index
+                                messages.append(message_data)
+            messages.sort(key=lambda x: x.get('message_index', 0))
+        except (ClientError, ValueError):
+            pass
+        return messages
+
+    def get_session_details(self, session_id: str) -> Optional[Dict[str, Any]]:
+        session_data = self.get_session(session_id)
+        if session_data:
+            session_data['messages'] = self.get_session_messages(session_id)
+            session_data['message_count'] = len(session_data['messages'])
+        return session_data
+
+    def _extract_session_id(self, s3_key: str) -> Optional[str]:
+        parts = s3_key.split('/')
+        for part in parts:
+            if part.startswith('session_'):
+                return part.replace('session_', '')
+        return None
+
+    def _read_json(self, key: str) -> Optional[Dict[str, Any]]:
+        try:
+            response = self.s3.get_object(Bucket=self.bucket, Key=key)
+            return json.loads(response['Body'].read().decode('utf-8'))
+        except (ClientError, json.JSONDecodeError):
+            return None
+
+# S3 bucket from environment
+S3_BUCKET = os.getenv("S3_BUCKET", "qbddassistant-strands")
+
+# Session manager will be created per request with agent-specific folder
+
+class ChatRequest(BaseModel):
+    prompt: str
+    session_id: Optional[str] = None
+    agent_id: Optional[str] = None
+
+class SessionResponse(BaseModel):
+    session_id: str
+    messages: List[Dict]
+
+def invoke_agent(agent_id: str, payload: dict, session_id: str):
+    client = boto3.client(
+        "bedrock-agentcore", 
+        region_name="us-east-1",
+        config=boto3.session.Config(read_timeout=60)
+    )
+    response = client.invoke_agent_runtime(
+        agentRuntimeArn=f"arn:aws:bedrock-agentcore:us-east-1:599149960404:runtime/{agent_id}",
+        runtimeSessionId=session_id or "12345678-1234-5678-9abc-123456789012",
+        payload=json.dumps(payload)
+    )
+    return response
+
+@router.post("/chat/new")
+async def create_session():
+    session_id = str(uuid.uuid4())
+    sessions[session_id] = []
+    return {"session_id": session_id}
+
+@router.get("/chat/{session_id}")
+async def get_session(session_id: str):
+    if session_id not in sessions:
+        raise HTTPException(status_code=404, detail="Session not found")
+    return SessionResponse(session_id=session_id, messages=sessions[session_id])
+
+@router.delete("/chat/{session_id}")
+async def clear_session(session_id: str):
+    if session_id not in sessions:
+        raise HTTPException(status_code=404, detail="Session not found")
+    sessions[session_id] = []
+    return {"message": "Session cleared"}
+
+@router.get("/sessions")
+async def list_all_sessions(agent_id: str):
+    """List all sessions from S3 for specific agent"""
+    agent_data = db_client.get_agent_by_id(agent_id)
+    if not agent_data:
+        raise HTTPException(status_code=404, detail=f"Agent {agent_id} not found")
+    
+    app_name = agent_data.get('agentProperties', {}).get('app') or agent_data.get('displayName', 'production')
+    session_manager = DynamicSessionManager(S3_BUCKET, app_name)
+    
+    sessions_data = session_manager.list_sessions()
+    return {"sessions": sessions_data, "count": len(sessions_data)}
+
+@router.get("/sessions/{session_id}")
+async def get_session_details(session_id: str, agent_id: str):
+    """Get session details including messages"""
+    agent_data = db_client.get_agent_by_id(agent_id)
+    if not agent_data:
+        raise HTTPException(status_code=404, detail=f"Agent {agent_id} not found")
+    
+    app_name = agent_data.get('agentProperties', {}).get('app') or agent_data.get('displayName', 'production')
+    session_manager = DynamicSessionManager(S3_BUCKET, app_name)
+    
+    session_data = session_manager.get_session_details(session_id)
+    if not session_data:
+        raise HTTPException(status_code=404, detail="Session not found")
+    return session_data
+
+@router.get("/sessions/{session_id}/messages")
+async def get_session_messages(session_id: str, agent_id: str):
+    """Get all messages for a session"""
+    agent_data = db_client.get_agent_by_id(agent_id)
+    if not agent_data:
+        raise HTTPException(status_code=404, detail=f"Agent {agent_id} not found")
+    
+    app_name = agent_data.get('agentProperties', {}).get('app') or agent_data.get('displayName', 'production')
+    session_manager = DynamicSessionManager(S3_BUCKET, app_name)
+    
+    messages = session_manager.get_session_messages(session_id)
+    return {"session_id": session_id, "messages": messages, "count": len(messages)}
+
+@router.post("/chat/stream")
+async def chat_stream(request: ChatRequest):
+    session_id = request.session_id or str(uuid.uuid4())
+    
+    if session_id not in sessions:
+        sessions[session_id] = []
+    
+    # Add user message
+    sessions[session_id].append({"role": "user", "content": request.prompt})
+    
+    async def generate_response():
+        try:
+            # Get agentUrl from DynamoDB using agent_id
+            agentcore_runtime_id = None
+            
+            if request.agent_id:
+                # Query DynamoDB to get agent details including agentUrl
+                agent_data = db_client.get_agent_by_id(request.agent_id)
+                if agent_data and agent_data.get('deploymentType') == 'Agentcore':
+                    agentcore_runtime_id = agent_data.get('agentUrl')
+                    app_name = agent_data.get('agentProperties', {}).get('app') or agent_data.get('displayName', 'production')
+                    
+                    print(f"\n{'='*80}")
+                    print(f"Agent ID: {request.agent_id}")
+                    print(f"AgentCore Runtime ID: {agentcore_runtime_id}")
+                    print(f"App Name (S3 Folder): {app_name}")
+                    print(f"S3 Bucket: {S3_BUCKET}")
+                    print(f"{'='*80}\n")
+                else:
+                    raise HTTPException(status_code=404, detail=f"Agent {request.agent_id} not found or not an AgentCore agent")
+            else:
+                # Fallback: Get first AgentCore agent from DynamoDB
+                agents = db_client.get_all_active_agents()
+                agentcore_agents = [a for a in agents if a.get('deploymentType') == 'Agentcore']
+                
+                if not agentcore_agents:
+                    raise HTTPException(status_code=404, detail="No AgentCore agents found")
+                
+                agent_data = agentcore_agents[0]
+                agentcore_runtime_id = agent_data.get("agentUrl")
+                app_name = agent_data.get('agentProperties', {}).get('app') or agent_data.get('displayName', 'production')
+            
+            if not agentcore_runtime_id:
+                raise HTTPException(status_code=500, detail="AgentCore runtime ID not found")
+            
+            payload = {
+                "prompt": request.prompt,
+                "user_id": "fastapi_user",
+                "session_id": session_id
+            }
+            
+            response = invoke_agent(agentcore_runtime_id, payload, session_id)
+            full_response = ""
+            
+            # Log raw response structure
+            print(f"\n{'='*80}")
+            print(f"RAW AGENTCORE RESPONSE TYPE: {type(response)}")
+            print(f"RAW AGENTCORE RESPONSE KEYS: {list(response.keys()) if isinstance(response, dict) else 'N/A'}")
+            if isinstance(response, dict) and 'response' in response:
+                print(f"RESPONSE BODY TYPE: {type(response['response'])}")
+                print(f"RESPONSE BODY ATTRIBUTES: {dir(response['response'])}")
+            print(f"{'='*80}\n")
+            
+            yield f"data: {json.dumps({'session_id': session_id})}\n\n"
+            
+            # Handle AgentCore streaming response
+            if 'response' in response:
+                streaming_body = response['response']
+                current_message = ""
+                tool_detected = False
+                tool_input = None
+                tool_result = None
+                
+                for line in streaming_body.iter_lines():
+                    if line:
+                        try:
+                            line_text = line.decode('utf-8')
+                            
+                            # Log first 10 raw lines to see structure
+                            if not hasattr(generate_response, 'line_count'):
+                                generate_response.line_count = 0
+                            if generate_response.line_count < 10:
+                                print(f"\n📦 RAW LINE {generate_response.line_count}: {line_text[:500]}")
+                                generate_response.line_count += 1
+                            
+                            if line_text.startswith('data: '):
+                                data_content = line_text[6:]
+                                try:
+                                    data = json.loads(data_content)
+                                    
+                                    # Handle message events with complete tool data
+                                    if isinstance(data, dict) and 'message' in data:
+                                        message = data['message']
+                                        if message.get('role') == 'assistant' and 'content' in message:
+                                            for content_item in message['content']:
+                                                if 'toolUse' in content_item:
+                                                    tool_use = content_item['toolUse']
+                                                    tool_name = tool_use.get('name')
+                                                    tool_input = tool_use.get('input', {})
+                                                    if tool_name:
+                                                        print(f"🔧 TOOL_START (from message): {tool_name}, INPUT: {json.dumps(tool_input)}")
+                                                        yield f"data: {json.dumps({'tool_start': tool_name, 'tool_input': tool_input})}\n\n"
+                                        elif message.get('role') == 'user' and 'content' in message:
+                                            for content_item in message['content']:
+                                                if 'toolResult' in content_item:
+                                                    tool_result_data = content_item['toolResult']
+                                                    structured_content = tool_result_data.get('structuredContent')
+                                                    print(f"📊 TOOL_RESULT (from message): {json.dumps(structured_content, indent=2)}")
+                                                    yield f"data: {json.dumps({'tool_result': structured_content})}\n\n"
+                                    
+                                    # Handle event structure from agent_structure.json
+                                    elif isinstance(data, dict) and 'event' in data:
+                                        event = data['event']
+                                        
+                                        # Tool start - contentBlockStart with toolUse
+                                        if 'contentBlockStart' in event and isinstance(event['contentBlockStart'], dict):
+                                            start_block = event['contentBlockStart']
+                                            if 'start' in start_block and isinstance(start_block['start'], dict):
+                                                start = start_block['start']
+                                                if 'toolUse' in start and isinstance(start['toolUse'], dict) and 'name' in start['toolUse']:
+                                                    if current_message.strip():
+                                                        yield f"data: {json.dumps({'message_end': current_message.strip()})}\n\n"
+                                                        current_message = ""
+                                                    tool_name = start['toolUse']['name']
+                                                    tool_input = start['toolUse'].get('input', {})
+                                                    print(f"🔧 TOOL_START: {tool_name}, INPUT: {json.dumps(tool_input)}")
+                                                    yield f"data: {json.dumps({'tool_start': tool_name, 'tool_input': tool_input})}\n\n"
+                                                    tool_detected = tool_name
+                                                    tool_result = None
+                                                elif 'toolResult' in start and isinstance(start['toolResult'], dict):
+                                                    # Tool result arrives - send it immediately
+                                                    result_content = start['toolResult'].get('content', [])
+                                                    tool_use_id = start['toolResult'].get('toolUseId', '')
+                                                    if result_content and len(result_content) > 0:
+                                                        # Extract text from content array
+                                                        if isinstance(result_content[0], dict) and 'text' in result_content[0]:
+                                                            try:
+                                                                parsed_result = json.loads(result_content[0]['text'])
+                                                                print(f"📊 TOOL_RESULT: {json.dumps(parsed_result, indent=2)}")
+                                                                yield f"data: {json.dumps({'tool_result': parsed_result, 'tool_use_id': tool_use_id})}\n\n"
+                                                            except:
+                                                                print(f"📊 TOOL_RESULT (text): {result_content[0]['text'][:200]}...")
+                                                                yield f"data: {json.dumps({'tool_result': result_content[0]['text'], 'tool_use_id': tool_use_id})}\n\n"
+                                                        else:
+                                                            print(f"📊 TOOL_RESULT (raw): {result_content}")
+                                                            yield f"data: {json.dumps({'tool_result': result_content, 'tool_use_id': tool_use_id})}\n\n"
+                                        
+                                        # Text streaming - contentBlockDelta with delta.text
+                                        elif 'contentBlockDelta' in event and isinstance(event['contentBlockDelta'], dict):
+                                            content_block = event['contentBlockDelta']
+                                            if 'delta' in content_block and isinstance(content_block['delta'], dict):
+                                                delta = content_block['delta']
+                                                if 'text' in delta:
+                                                    text = delta['text']
+                                                    current_message += text
+                                                    full_response += text
+                                                    yield f"data: {json.dumps({'text': text})}\n\n"
+                                        
+                                        # Tool end - contentBlockStop
+                                        elif 'contentBlockStop' in event and tool_detected:
+                                            print(f"✅ TOOL_END: {tool_detected}")
+                                            yield f"data: {json.dumps({'tool_end': tool_detected, 'tool_result': tool_result})}\n\n"
+                                            yield f"data: {json.dumps({'message_start': True})}\n\n"
+                                            tool_detected = False
+                                            tool_input = None
+                                            tool_result = None
+                                        
+                                        # Message boundaries
+                                        elif 'messageStop' in event:
+                                            if current_message.strip():
+                                                yield f"data: {json.dumps({'message_end': current_message.strip()})}\n\n"
+                                                current_message = ""
+                                    
+                                    # Handle event_loop_cycle from additional_schemas.json
+                                    elif isinstance(data, dict) and 'delta' in data and isinstance(data['delta'], dict) and 'text' in data['delta']:
+                                        text = data['delta']['text']
+                                        current_message += text
+                                        full_response += text
+                                        yield f"data: {json.dumps({'text': text})}\n\n"
+                                    
+                                    # Handle tool_use_stream from additional_schemas.json
+                                    elif isinstance(data, dict) and 'current_tool_use' in data and isinstance(data['current_tool_use'], dict) and 'name' in data['current_tool_use']:
+                                        if current_message.strip():
+                                            yield f"data: {json.dumps({'message_end': current_message.strip()})}\n\n"
+                                            current_message = ""
+                                        tool_name = data['current_tool_use']['name']
+                                        tool_input = data['current_tool_use'].get('input', {})
+                                        yield f"data: {json.dumps({'tool_start': tool_name, 'tool_input': tool_input, 'current_tool_use': data['current_tool_use']})}\n\n"
+                                        tool_detected = tool_name
+                                        
+                                except json.JSONDecodeError:
+                                    # Fallback: stream as raw text
+                                    yield f"data: {json.dumps({'text': line_text})}\n\n"
+                                    full_response += line_text + "\n"
+                            else:
+                                # Non-data lines, stream as text
+                                yield f"data: {json.dumps({'text': line_text})}\n\n"
+                                full_response += line_text + "\n"
+                        except Exception as e:
+                            print(f"ERROR processing line: {e}")
+                            # Send error as valid JSON
+                            yield f"data: {json.dumps({'text': f'[Error processing line: {str(e)}]'})}\n\n"
+            else:
+                error_msg = f"No response found. Response keys: {list(response.keys()) if isinstance(response, dict) else 'Not a dict'}"
+                yield f"data: {json.dumps({'text': error_msg})}\n\n"
+            
+            # Add assistant response to session
+            sessions[session_id].append({"role": "assistant", "content": full_response})
+            yield f"data: {json.dumps({'done': True})}\n\n"
+            
+        except Exception as e:
+            error_msg = f"Error: {str(e)}"
+            sessions[session_id].append({"role": "assistant", "content": error_msg})
+            yield f"data: {json.dumps({'error': error_msg})}\n\n"
+    
+    return StreamingResponse(
+        generate_response(),
+        media_type="text/plain",
+        headers={"Cache-Control": "no-cache", "Connection": "keep-alive"}
+    )
+
+@router.get("/cloudwatch/logs/stream")
+async def stream_cloudwatch_logs_agentcore(logGroupName: str, logStreamName: str, sessionId: str = None):
+    """Stream CloudWatch logs for AgentCore execution"""
+    
+    async def log_stream():
+        logs_client = boto3.client("logs", region_name=os.getenv("AWS_REGION", "us-east-1"))
+        
+        print(f"🔍 Starting CloudWatch stream for: {logGroupName} / {logStreamName}")
+        yield f": starting\n\n"
+        
+        try:
+            stream_exists = False
+            for attempt in range(10):
+                try:
+                    response = logs_client.get_log_events(
+                        logGroupName=logGroupName,
+                        logStreamName=logStreamName,
+                        startFromHead=True,
+                        limit=1
+                    )
+                    stream_exists = True
+                    print(f"✅ Log stream found after {attempt} attempts")
+                    break
+                except Exception:
+                    await asyncio.sleep(0.5)
+            
+            if not stream_exists:
+                yield f"data: {json.dumps({'message': 'Waiting for logs to be generated...'})}\n\n"
+            
+            next_token = None
+            seen_tokens = set()
+            no_data_count = 0
+            max_polls = 300  # Limit to 300 polls (5 minutes max)
+            
+            for poll_count in range(max_polls):
+                try:
+                    params = {
+                        "logGroupName": logGroupName,
+                        "logStreamName": logStreamName,
+                        "startFromHead": True,
+                        "limit": 100
+                    }
+                    if next_token and next_token not in seen_tokens:
+                        params["nextToken"] = next_token
+                    
+                    response = logs_client.get_log_events(**params)
+                    events = response.get("events", [])
+                    new_token = response.get("nextForwardToken")
+                    
+                    if events:
+                        no_data_count = 0
+                        for event in events:
+                            clean_message = re.sub(r"\x1b\[[0-9;]*m", "", event["message"].strip())
+                            log_data = {"timestamp": event["timestamp"], "message": clean_message}
+                            yield f"data: {json.dumps(log_data)}\n\n"
+                    else:
+                        no_data_count += 1
+                        if no_data_count > 10:  # No data for 20 seconds, end stream
+                            break
+                    
+                    if new_token == next_token or new_token in seen_tokens:
+                        if no_data_count > 5:
+                            yield f": keepalive\n\n"
+                        await asyncio.sleep(2)
+                    else:
+                        if next_token:
+                            seen_tokens.add(next_token)
+                        next_token = new_token
+                        await asyncio.sleep(0.3)
+                        
+                except Exception as e:
+                    print(f"❌ Error polling logs: {str(e)}")
+                    await asyncio.sleep(1)
+        
+        except Exception as e:
+            print(f"❌ Fatal error: {str(e)}")
+            yield f"data: {json.dumps({'error': f'CloudWatch error: {str(e)}'})}\n\n"
+        finally:
+            print("🏁 Stream ending")
+            yield f"data: {json.dumps({'end': True})}\n\n"
+    
+    return StreamingResponse(
+        log_stream(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+            "Pragma": "no-cache",
+            "Expires": "0",
+            "Access-Control-Allow-Origin": "*"
+        }
+    )
+
+
+
+-------------------------------------------
+
+
+
+"""AgentCore router for Bedrock agent runtime integration"""
+import json
+import re
+import uuid
+import boto3
+import asyncio
+import os
+from typing import Dict, List, Optional, Any
+from fastapi import APIRouter, HTTPException
+from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
+from database.dynamodb_client import db_client
+from datetime import datetime, timezone
+from botocore.exceptions import ClientError
+
+router = APIRouter(prefix="/agentcore", tags=["agentcore"])
+
+# In-memory session storage (use Redis/DB in production)
+sessions: Dict[str, List[Dict]] = {}
+
+class DynamicSessionManager:
+    def __init__(self, bucket: str, folder_name: str, region: str = "us-east-1"):
+        self.bucket = bucket
+        self.folder_name = folder_name.rstrip('/')
+        self.s3 = boto3.client('s3', region_name=region)
+
+    def list_sessions(self) -> List[Dict[str, Any]]:
+        sessions = []
+        try:
+            paginator = self.s3.get_paginator('list_objects_v2')
+            for page in paginator.paginate(Bucket=self.bucket, Prefix=f"{self.folder_name}/"):
+                for obj in page.get('Contents', []):
+                    if '/session.json' in obj['Key']:
+                        session_id = self._extract_session_id(obj['Key'])
+                        if session_id:
+                            session_data = self._read_json(obj['Key'])
+                            if session_data:
+                                session_data['session_id'] = session_id
+                                sessions.append(session_data)
+        except ClientError:
+            pass
+        return sessions
+
+    def get_session(self, session_id: str) -> Optional[Dict[str, Any]]:
+        session_key = f"{self.folder_name}//session_{session_id}/session.json"
+        session_data = self._read_json(session_key)
+        if session_data:
+            session_data['session_id'] = session_id
+        return session_data
+
+    def get_session_messages(self, session_id: str) -> List[Dict[str, Any]]:
+        messages = []
+        messages_prefix = f"{self.folder_name}//session_{session_id}/agents/agent_default/messages/"
+        try:
+            paginator = self.s3.get_paginator('list_objects_v2')
+            for page in paginator.paginate(Bucket=self.bucket, Prefix=messages_prefix):
+                for obj in page.get('Contents', []):
+                    if obj['Key'].endswith('.json'):
+                        message_data = self._read_json(obj['Key'])
+                        if message_data:
+                            filename = obj['Key'].split('/')[-1]
+                            if filename.startswith('message_'):
+                                index = int(filename.replace('message_', '').replace('.json', ''))
+                                message_data['message_index'] = index
+                                messages.append(message_data)
+            messages.sort(key=lambda x: x.get('message_index', 0))
+        except (ClientError, ValueError):
+            pass
+        return messages
+
+    def get_session_details(self, session_id: str) -> Optional[Dict[str, Any]]:
+        session_data = self.get_session(session_id)
+        if session_data:
+            session_data['messages'] = self.get_session_messages(session_id)
+            session_data['message_count'] = len(session_data['messages'])
+        return session_data
+
+    def _extract_session_id(self, s3_key: str) -> Optional[str]:
+        parts = s3_key.split('/')
+        for part in parts:
+            if part.startswith('session_'):
+                return part.replace('session_', '')
+        return None
+
+    def _read_json(self, key: str) -> Optional[Dict[str, Any]]:
+        try:
+            response = self.s3.get_object(Bucket=self.bucket, Key=key)
+            return json.loads(response['Body'].read().decode('utf-8'))
+        except (ClientError, json.JSONDecodeError):
+            return None
+
+# Initialize session manager
+session_manager = DynamicSessionManager("qbddassistant-strands", "production")
+
+class ChatRequest(BaseModel):
+    prompt: str
+    session_id: Optional[str] = None
+    agent_id: Optional[str] = None
+
+class SessionResponse(BaseModel):
+    session_id: str
+    messages: List[Dict]
+
+def invoke_agent(agent_id: str, payload: dict, session_id: str):
+    client = boto3.client(
+        "bedrock-agentcore", 
+        region_name="us-east-1",
+        config=boto3.session.Config(read_timeout=60)
+    )
+    response = client.invoke_agent_runtime(
+        agentRuntimeArn=f"arn:aws:bedrock-agentcore:us-east-1:599149960404:runtime/{agent_id}",
+        runtimeSessionId=session_id or "12345678-1234-5678-9abc-123456789012",
+        payload=json.dumps(payload)
+    )
+    return response
+
+@router.post("/chat/new")
+async def create_session():
+    session_id = str(uuid.uuid4())
+    sessions[session_id] = []
+    return {"session_id": session_id}
+
+@router.get("/chat/{session_id}")
+async def get_session(session_id: str):
+    if session_id not in sessions:
+        raise HTTPException(status_code=404, detail="Session not found")
+    return SessionResponse(session_id=session_id, messages=sessions[session_id])
+
+@router.delete("/chat/{session_id}")
+async def clear_session(session_id: str):
+    if session_id not in sessions:
+        raise HTTPException(status_code=404, detail="Session not found")
+    sessions[session_id] = []
+    return {"message": "Session cleared"}
+
+@router.get("/sessions")
+async def list_all_sessions():
+    """List all sessions from S3"""
+    sessions_data = session_manager.list_sessions()
+    return {"sessions": sessions_data, "count": len(sessions_data)}
+
+@router.get("/sessions/{session_id}")
+async def get_session_details(session_id: str):
+    """Get session details including messages"""
+    session_data = session_manager.get_session_details(session_id)
+    if not session_data:
+        raise HTTPException(status_code=404, detail="Session not found")
+    return session_data
+
+@router.get("/sessions/{session_id}/messages")
+async def get_session_messages(session_id: str):
+    """Get all messages for a session"""
+    messages = session_manager.get_session_messages(session_id)
+    return {"session_id": session_id, "messages": messages, "count": len(messages)}
+
+@router.post("/chat/stream")
+async def chat_stream(request: ChatRequest):
+    session_id = request.session_id or str(uuid.uuid4())
+    
+    if session_id not in sessions:
+        sessions[session_id] = []
+    
+    # Add user message
+    sessions[session_id].append({"role": "user", "content": request.prompt})
+    
+    async def generate_response():
+        try:
+            # Get agentUrl from DynamoDB using agent_id
+            agentcore_runtime_id = None
+            
+            if request.agent_id:
+                # Query DynamoDB to get agent details including agentUrl
+                agent_data = db_client.get_agent_by_id(request.agent_id)
+                if agent_data and agent_data.get('deploymentType') == 'Agentcore':
+                    agentcore_runtime_id = agent_data.get('agentUrl')
+                    print(f"✅ Found AgentCore runtime ID from DynamoDB: {agentcore_runtime_id}")
+                else:
+                    raise HTTPException(status_code=404, detail=f"Agent {request.agent_id} not found or not an AgentCore agent")
+            else:
+                # Fallback: Get first AgentCore agent from DynamoDB
+                agents = db_client.get_all_active_agents()
+                agentcore_agents = [a for a in agents if a.get('deploymentType') == 'Agentcore']
+                
+                if not agentcore_agents:
+                    raise HTTPException(status_code=404, detail="No AgentCore agents found")
+                
+                agentcore_runtime_id = agentcore_agents[0].get("agentUrl")
+            
+            if not agentcore_runtime_id:
+                raise HTTPException(status_code=500, detail="AgentCore runtime ID not found")
+            
+            payload = {
+                "prompt": request.prompt,
+                "user_id": "fastapi_user",
+                "session_id": session_id
+            }
+            
+            response = invoke_agent(agentcore_runtime_id, payload, session_id)
+            full_response = ""
+            
+            # Log raw response structure
+            print(f"\n{'='*80}")
+            print(f"RAW AGENTCORE RESPONSE TYPE: {type(response)}")
+            print(f"RAW AGENTCORE RESPONSE KEYS: {list(response.keys()) if isinstance(response, dict) else 'N/A'}")
+            if isinstance(response, dict) and 'response' in response:
+                print(f"RESPONSE BODY TYPE: {type(response['response'])}")
+                print(f"RESPONSE BODY ATTRIBUTES: {dir(response['response'])}")
+            print(f"{'='*80}\n")
+            
+            yield f"data: {json.dumps({'session_id': session_id})}\n\n"
+            
+            # Handle AgentCore streaming response
+            if 'response' in response:
+                streaming_body = response['response']
+                current_message = ""
+                tool_detected = False
+                tool_input = None
+                tool_result = None
+                
+                for line in streaming_body.iter_lines():
+                    if line:
+                        try:
+                            line_text = line.decode('utf-8')
+                            
+                            # Log first 10 raw lines to see structure
+                            if not hasattr(generate_response, 'line_count'):
+                                generate_response.line_count = 0
+                            if generate_response.line_count < 10:
+                                print(f"\n📦 RAW LINE {generate_response.line_count}: {line_text[:500]}")
+                                generate_response.line_count += 1
+                            
+                            if line_text.startswith('data: '):
+                                data_content = line_text[6:]
+                                try:
+                                    data = json.loads(data_content)
+                                    
+                                    # Handle message events with complete tool data
+                                    if isinstance(data, dict) and 'message' in data:
+                                        message = data['message']
+                                        if message.get('role') == 'assistant' and 'content' in message:
+                                            for content_item in message['content']:
+                                                if 'toolUse' in content_item:
+                                                    tool_use = content_item['toolUse']
+                                                    tool_name = tool_use.get('name')
+                                                    tool_input = tool_use.get('input', {})
+                                                    if tool_name:
+                                                        print(f"🔧 TOOL_START (from message): {tool_name}, INPUT: {json.dumps(tool_input)}")
+                                                        yield f"data: {json.dumps({'tool_start': tool_name, 'tool_input': tool_input})}\n\n"
+                                        elif message.get('role') == 'user' and 'content' in message:
+                                            for content_item in message['content']:
+                                                if 'toolResult' in content_item:
+                                                    tool_result_data = content_item['toolResult']
+                                                    structured_content = tool_result_data.get('structuredContent')
+                                                    print(f"📊 TOOL_RESULT (from message): {json.dumps(structured_content, indent=2)}")
+                                                    yield f"data: {json.dumps({'tool_result': structured_content})}\n\n"
+                                    
+                                    # Handle event structure from agent_structure.json
+                                    elif isinstance(data, dict) and 'event' in data:
+                                        event = data['event']
+                                        
+                                        # Tool start - contentBlockStart with toolUse
+                                        if 'contentBlockStart' in event and isinstance(event['contentBlockStart'], dict):
+                                            start_block = event['contentBlockStart']
+                                            if 'start' in start_block and isinstance(start_block['start'], dict):
+                                                start = start_block['start']
+                                                if 'toolUse' in start and isinstance(start['toolUse'], dict) and 'name' in start['toolUse']:
+                                                    if current_message.strip():
+                                                        yield f"data: {json.dumps({'message_end': current_message.strip()})}\n\n"
+                                                        current_message = ""
+                                                    tool_name = start['toolUse']['name']
+                                                    tool_input = start['toolUse'].get('input', {})
+                                                    print(f"🔧 TOOL_START: {tool_name}, INPUT: {json.dumps(tool_input)}")
+                                                    yield f"data: {json.dumps({'tool_start': tool_name, 'tool_input': tool_input})}\n\n"
+                                                    tool_detected = tool_name
+                                                    tool_result = None
+                                                elif 'toolResult' in start and isinstance(start['toolResult'], dict):
+                                                    # Tool result arrives - send it immediately
+                                                    result_content = start['toolResult'].get('content', [])
+                                                    tool_use_id = start['toolResult'].get('toolUseId', '')
+                                                    if result_content and len(result_content) > 0:
+                                                        # Extract text from content array
+                                                        if isinstance(result_content[0], dict) and 'text' in result_content[0]:
+                                                            try:
+                                                                parsed_result = json.loads(result_content[0]['text'])
+                                                                print(f"📊 TOOL_RESULT: {json.dumps(parsed_result, indent=2)}")
+                                                                yield f"data: {json.dumps({'tool_result': parsed_result, 'tool_use_id': tool_use_id})}\n\n"
+                                                            except:
+                                                                print(f"📊 TOOL_RESULT (text): {result_content[0]['text'][:200]}...")
+                                                                yield f"data: {json.dumps({'tool_result': result_content[0]['text'], 'tool_use_id': tool_use_id})}\n\n"
+                                                        else:
+                                                            print(f"📊 TOOL_RESULT (raw): {result_content}")
+                                                            yield f"data: {json.dumps({'tool_result': result_content, 'tool_use_id': tool_use_id})}\n\n"
+                                        
+                                        # Text streaming - contentBlockDelta with delta.text
+                                        elif 'contentBlockDelta' in event and isinstance(event['contentBlockDelta'], dict):
+                                            content_block = event['contentBlockDelta']
+                                            if 'delta' in content_block and isinstance(content_block['delta'], dict):
+                                                delta = content_block['delta']
+                                                if 'text' in delta:
+                                                    text = delta['text']
+                                                    current_message += text
+                                                    full_response += text
+                                                    yield f"data: {json.dumps({'text': text})}\n\n"
+                                        
+                                        # Tool end - contentBlockStop
+                                        elif 'contentBlockStop' in event and tool_detected:
+                                            print(f"✅ TOOL_END: {tool_detected}")
+                                            yield f"data: {json.dumps({'tool_end': tool_detected, 'tool_result': tool_result})}\n\n"
+                                            yield f"data: {json.dumps({'message_start': True})}\n\n"
+                                            tool_detected = False
+                                            tool_input = None
+                                            tool_result = None
+                                        
+                                        # Message boundaries
+                                        elif 'messageStop' in event:
+                                            if current_message.strip():
+                                                yield f"data: {json.dumps({'message_end': current_message.strip()})}\n\n"
+                                                current_message = ""
+                                    
+                                    # Handle event_loop_cycle from additional_schemas.json
+                                    elif isinstance(data, dict) and 'delta' in data and isinstance(data['delta'], dict) and 'text' in data['delta']:
+                                        text = data['delta']['text']
+                                        current_message += text
+                                        full_response += text
+                                        yield f"data: {json.dumps({'text': text})}\n\n"
+                                    
+                                    # Handle tool_use_stream from additional_schemas.json
+                                    elif isinstance(data, dict) and 'current_tool_use' in data and isinstance(data['current_tool_use'], dict) and 'name' in data['current_tool_use']:
+                                        if current_message.strip():
+                                            yield f"data: {json.dumps({'message_end': current_message.strip()})}\n\n"
+                                            current_message = ""
+                                        tool_name = data['current_tool_use']['name']
+                                        tool_input = data['current_tool_use'].get('input', {})
+                                        yield f"data: {json.dumps({'tool_start': tool_name, 'tool_input': tool_input, 'current_tool_use': data['current_tool_use']})}\n\n"
+                                        tool_detected = tool_name
+                                        
+                                except json.JSONDecodeError:
+                                    # Fallback: stream as raw text
+                                    yield f"data: {json.dumps({'text': line_text})}\n\n"
+                                    full_response += line_text + "\n"
+                            else:
+                                # Non-data lines, stream as text
+                                yield f"data: {json.dumps({'text': line_text})}\n\n"
+                                full_response += line_text + "\n"
+                        except Exception as e:
+                            print(f"ERROR processing line: {e}")
+                            # Send error as valid JSON
+                            yield f"data: {json.dumps({'text': f'[Error processing line: {str(e)}]'})}\n\n"
+            else:
+                error_msg = f"No response found. Response keys: {list(response.keys()) if isinstance(response, dict) else 'Not a dict'}"
+                yield f"data: {json.dumps({'text': error_msg})}\n\n"
+            
+            # Add assistant response to session
+            sessions[session_id].append({"role": "assistant", "content": full_response})
+            yield f"data: {json.dumps({'done': True})}\n\n"
+            
+        except Exception as e:
+            error_msg = f"Error: {str(e)}"
+            sessions[session_id].append({"role": "assistant", "content": error_msg})
+            yield f"data: {json.dumps({'error': error_msg})}\n\n"
+    
+    return StreamingResponse(
+        generate_response(),
+        media_type="text/plain",
+        headers={"Cache-Control": "no-cache", "Connection": "keep-alive"}
+    )
+
+@router.get("/cloudwatch/logs/stream")
+async def stream_cloudwatch_logs_agentcore(logGroupName: str, logStreamName: str, sessionId: str = None):
+    """Stream CloudWatch logs for AgentCore execution"""
+    
+    async def log_stream():
+        logs_client = boto3.client("logs", region_name=os.getenv("AWS_REGION", "us-east-1"))
+        
+        print(f"🔍 Starting CloudWatch stream for: {logGroupName} / {logStreamName}")
+        yield f": starting\n\n"
+        
+        try:
+            stream_exists = False
+            for attempt in range(10):
+                try:
+                    response = logs_client.get_log_events(
+                        logGroupName=logGroupName,
+                        logStreamName=logStreamName,
+                        startFromHead=True,
+                        limit=1
+                    )
+                    stream_exists = True
+                    print(f"✅ Log stream found after {attempt} attempts")
+                    break
+                except Exception:
+                    await asyncio.sleep(0.5)
+            
+            if not stream_exists:
+                yield f"data: {json.dumps({'message': 'Waiting for logs to be generated...'})}\n\n"
+            
+            next_token = None
+            seen_tokens = set()
+            no_data_count = 0
+            max_polls = 300  # Limit to 300 polls (5 minutes max)
+            
+            for poll_count in range(max_polls):
+                try:
+                    params = {
+                        "logGroupName": logGroupName,
+                        "logStreamName": logStreamName,
+                        "startFromHead": True,
+                        "limit": 100
+                    }
+                    if next_token and next_token not in seen_tokens:
+                        params["nextToken"] = next_token
+                    
+                    response = logs_client.get_log_events(**params)
+                    events = response.get("events", [])
+                    new_token = response.get("nextForwardToken")
+                    
+                    if events:
+                        no_data_count = 0
+                        for event in events:
+                            clean_message = re.sub(r"\x1b\[[0-9;]*m", "", event["message"].strip())
+                            log_data = {"timestamp": event["timestamp"], "message": clean_message}
+                            yield f"data: {json.dumps(log_data)}\n\n"
+                    else:
+                        no_data_count += 1
+                        if no_data_count > 10:  # No data for 20 seconds, end stream
+                            break
+                    
+                    if new_token == next_token or new_token in seen_tokens:
+                        if no_data_count > 5:
+                            yield f": keepalive\n\n"
+                        await asyncio.sleep(2)
+                    else:
+                        if next_token:
+                            seen_tokens.add(next_token)
+                        next_token = new_token
+                        await asyncio.sleep(0.3)
+                        
+                except Exception as e:
+                    print(f"❌ Error polling logs: {str(e)}")
+                    await asyncio.sleep(1)
+        
+        except Exception as e:
+            print(f"❌ Fatal error: {str(e)}")
+            yield f"data: {json.dumps({'error': f'CloudWatch error: {str(e)}'})}\n\n"
+        finally:
+            print("🏁 Stream ending")
+            yield f"data: {json.dumps({'end': True})}\n\n"
+    
+    return StreamingResponse(
+        log_stream(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+            "Pragma": "no-cache",
+            "Expires": "0",
+            "Access-Control-Allow-Origin": "*"
+        }
+    )
+    
+    
+--------------------------------------------------------------------------------
+
