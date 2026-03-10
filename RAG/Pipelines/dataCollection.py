@@ -48,7 +48,7 @@ class DataCollector:
         """
         
         # Send an HTTP GET request to the specified URL and store the response object
-        response = requests.get(url)
+        response = requests.get(url,headers={'User-Agent': 'Mozilla/5.0'})
         # Parse the HTML content from the response using BeautifulSoup with the html.parser
         soup = BeautifulSoup(response.content, 'html.parser')
         # Extract all text content from the parsed HTML, using newlines as separators and stripping whitespace
