@@ -45,15 +45,37 @@
 
 
 
-from documentParsing import DocumentParser
-parser = DocumentParser()
+# from documentParsing import DocumentParser
+# parser = DocumentParser()
 
-pdf_data = parser.parse_pdf_pypdf2(r"C:\Users\Administrator\Downloads\sravanResume.pdf")
+# pdf_data = parser.parse_pdf_pypdf2(r"C:\Users\Administrator\Downloads\sravanResume.pdf")
 
-html_data = parser.parse_html("<html><head><title>Test</title></head><body><h1>Heading</h1><p>Paragraph with a <a href='https://example.com'>link</a>.</p></body></html>")
-# docx_data = parser.parse_docx(r"C:\Users\Administrator\Downloads\sample.docx")
-# json_data = parser.parse_json(r"C:\Users\Administrator\Downloads\sample.json")
-# csv_data = parser.parse_csv(r"C:\Users\Administrator\Downloads\sample.csv")
+# html_data = parser.parse_html("<html><head><title>Test</title></head><body><h1>Heading</h1><p>Paragraph with a <a href='https://example.com'>link</a>.</p></body></html>")
+# # docx_data = parser.parse_docx(r"C:\Users\Administrator\Downloads\sample.docx")
+# # json_data = parser.parse_json(r"C:\Users\Administrator\Downloads\sample.json")
+# # csv_data = parser.parse_csv(r"C:\Users\Administrator\Downloads\sample.csv")
 
-text = parser.extract_text_from_parsed(pdf_data)
-print(text)
+# text = parser.extract_text_from_parsed(pdf_data)
+# print(text)
+
+
+#--------------------- chunking and splitting tests ---------------------
+
+from dataCollection import DataCollector
+from dataClean_Processing import DataPreprocessor
+from TextChunkingSplitting import TextChunker
+
+collector = DataCollector()
+preprocessor = DataPreprocessor()
+chunker = TextChunker()
+
+data = collector.collect_text_file(r"C:\Users\Administrator\Documents\sravan\Learning\RAG\data\raw\collected_data.txt")
+cleaned_data = preprocessor.preprocess(data)
+
+chunks_char = chunker.chunk_with_metadata(cleaned_data, method='characters', chunk_size = 500, overlap = 100)
+chunks_semantic = chunker.chunk_with_metadata(cleaned_data, method='semantic', max_chunk_size = 1000)
+
+print(f"Character-based chunks: {len(chunks_char)}")
+print(f"Semantic chunks: {len(chunks_semantic)}")
+print(f"\nFirst character chunk:\n{chunks_char[0]}...")
+print(f"\nFirst semantic chunk:\n{chunks_semantic[0]}...")
