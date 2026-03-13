@@ -1,12 +1,12 @@
 PyPDF2
 beautifulsoup4
 requests
-PyPDF2
-beautifulsoup4
-requests
 spacy
 pdfplumber
 python-docx
 PyMuPDF
 selenium
 pandas
+sentence-transformers
+scikit-learn
+numpy
