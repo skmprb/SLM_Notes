@@ -61,21 +61,47 @@
 
 #--------------------- chunking and splitting tests ---------------------
 
+# from dataCollection import DataCollector
+# from dataClean_Processing import DataPreprocessor
+# from TextChunkingSplitting import TextChunker
+
+# collector = DataCollector()
+# preprocessor = DataPreprocessor()
+# chunker = TextChunker()
+
+# data = collector.collect_text_file(r"C:\Users\Administrator\Documents\sravan\Learning\RAG\data\raw\collected_data.txt")
+# cleaned_data = preprocessor.preprocess(data)
+
+# chunks_char = chunker.chunk_with_metadata(cleaned_data, method='characters', chunk_size = 500, overlap = 100)
+# chunks_semantic = chunker.chunk_with_metadata(cleaned_data, method='semantic', max_chunk_size = 1000)
+
+# print(f"Character-based chunks: {len(chunks_char)}")
+# print(f"Semantic chunks: {len(chunks_semantic)}")
+# print(f"\nFirst character chunk:\n{chunks_char[0]}...")
+# print(f"\nFirst semantic chunk:\n{chunks_semantic[0]}...")
+
+
+#---------------------------- embedding generation tests ----------------#
+
 from dataCollection import DataCollector
 from dataClean_Processing import DataPreprocessor
 from TextChunkingSplitting import TextChunker
+from embedding_generator import EmbeddingGenerator
 
 collector = DataCollector()
 preprocessor = DataPreprocessor()
 chunker = TextChunker()
+embedder = EmbeddingGenerator()
 
 data = collector.collect_text_file(r"C:\Users\Administrator\Documents\sravan\Learning\RAG\data\raw\collected_data.txt")
 cleaned_data = preprocessor.preprocess(data)
+chunks = chunker.chunk_with_metadata(cleaned_data, method = 'characters', chunk_size = 500, overlap = 100)
 
-chunks_char = chunker.chunk_with_metadata(cleaned_data, method='characters', chunk_size = 500, overlap = 100)
-chunks_semantic = chunker.chunk_with_metadata(cleaned_data, method='semantic', max_chunk_size = 1000)
+chunks = embedder.generate_embeddings(chunks, provider="tfidf", batch_size=16)
+# chunks = embedder.generate_embeddings(chunks, provider="openai", batch_size=16)
+# chunks = embedder.generate_embeddings(chunks, provider="huggingface", batch_size=16)
+# chunks = embedder.generate_embeddings(chunks, provider="cohere", batch_size=16)
+# chunks = embedder.generate_embeddings(chunks, provider="bedrock", batch_size=16)
 
-print(f"Character-based chunks: {len(chunks_char)}")
-print(f"Semantic chunks: {len(chunks_semantic)}")
-print(f"\nFirst character chunk:\n{chunks_char[0]}...")
-print(f"\nFirst semantic chunk:\n{chunks_semantic[0]}...")
+print(f"Generated embeddings for {len(chunks)} chunks")
+print(f"Embedding dim : {len(chunks[0]['embedding'])}")

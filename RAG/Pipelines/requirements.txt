@@ -10,3 +10,11 @@ pandas
 sentence-transformers
 scikit-learn
 numpy
+
+#chunking
+openai
+sentence-transformers
+boto3
+cohere
+scikit-learn
+numpy
