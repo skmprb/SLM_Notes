@@ -48,8 +48,11 @@ class EmbeddingGenerator:
     
     def generate_embeddings(self, chunks: List[Dict], provider: str = "tfidf", batch_size: int = 32, **kwargs) -> List[Dict]:
         
+        # Extract the text content from each chunk dictionary to create a list of strings for embedding
         texts = [chunk['content'] for chunk in chunks]
         
+        # Create a mapping dictionary that associates provider names with their corresponding embedding methods
+        # This allows dynamic selection of the embedding function based on the provider parameter
         embed_fn = {
             'openai': self.embed_openai,
             'huggingface': self.embed_huggingface,
@@ -58,12 +61,21 @@ class EmbeddingGenerator:
             'bedrock': self.embed_bedrock
         }[provider]
         
+        # Initialize an empty list to store all computed embeddings
         all_embeddings = []
+        # Process texts in batches to manage memory usage and API rate limits
+        # Loop through the texts list in chunks of size 'batch_size'
         for i in range(0, len(texts), batch_size):
+            # Extract a batch of texts starting at index i with maximum size of batch_size
             batch = texts[i:i+batch_size]
+            # Call the selected embedding function on the current batch and extend the results to all_embeddings
+            # **kwargs allows passing additional parameters specific to each embedding provider
             all_embeddings.extend(embed_fn(batch, **kwargs))
             
+        # Combine the original chunks with their corresponding embeddings
+        # Iterate through both chunks and embeddings simultaneously using zip
         for chunk, embedding in zip(chunks, all_embeddings):
+            # Add the computed embedding as a new key-value pair to each chunk dictionary
             chunk['embedding'] = embedding
             
         return chunks
