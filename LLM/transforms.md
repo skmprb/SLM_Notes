@@ -1,3 +1,23 @@
+ANN
+FNN  input to output
+
+RNN 
+RNN forward propagation with time
+RNN backward propagation with time
+
+Vanishing gradient problem
+LSTM
+GRU
+
+Bidirectional RNN
+
+simple encoder and simple decoder
+
+self attenution
+sequeence to sequence
+
+
+
 # Understanding Recurrent Models and Their Limitations
 
 ## How Recurrent Models Work

@@ -134,6 +134,48 @@ Then you grab the Values, weighted by these scores:
 Result: "am" now carries mostly information from "I" and "student"
 ```
 
+These weights are not manually assigned — they are learned by the model during training through backpropagation.
+
+Here's how it actually works:
+
+Step 1: Each word starts as an embedding vector (512 numbers)
+
+"am" = [0.2, 0.8, -0.1, 0.5, ...]    (512 dims)
+"I"  = [0.3, 0.7, 0.0, -0.2, ...]    (512 dims)
+
+Step 2: These embeddings are multiplied by learned weight matrices (W_Q, W_K) to create Q and K
+
+Q("am") = "am" embedding × W_Q = [0.4, 0.9, -0.3, ...]   (64 dims)
+K("I")  = "I"  embedding × W_K = [0.5, 0.8, 0.1, ...]    (64 dims)
+
+
+W_Q and W_K are the model's weights — random at first, improved during training.
+
+Step 3: The score is just a dot product (multiply matching positions and sum)
+
+Q("am") × K("I") = 0.4×0.5 + 0.9×0.8 + (-0.3)×0.1 + ...
+                  = 0.20 + 0.72 + (-0.03) + ...
+                  = some number (e.g., 3.4)
+
+
+Step 4: After scaling (÷ √d_k) and softmax, we get the final weights
+
+Raw scores:    [3.4, 1.8, 0.1, 2.5]     ← dot products
+Scaled:        [0.43, 0.23, 0.01, 0.31]  ← ÷ √64
+After softmax: [0.35, 0.22, 0.15, 0.28]  ← probabilities (sum to 1)
+
+
+So the 0.85 in my example was a simplified illustration. In reality:
+
+Before training — W_Q and W_K are random → attention scores are random → model predicts garbage
+
+During training — backpropagation adjusts W_Q and W_K so that Q("am") and K("I") produce a high dot product (because "I" is relevant to "am"), and Q("am") and K("a") produce a low dot product (because "a" is not relevant)
+
+After training — the model has learned weight matrices that produce meaningful attention patterns
+
+The model discovers that subject-verb pairs should have high scores — nobody tells it that. It learns this from seeing thousands of examples and reducing the loss.
+
+
 ## Attention Formula
 
 ```
@@ -589,4 +631,308 @@ Beam Search (beam_size=3):
     "le est"  (0.2 × 0.6 = 0.12)
     ... keep top 3 ...
   Final: picks the sequence with highest total probability
+```
+
+---
+
+# 6. Transformer Rules & Constraints
+
+## Hard Rules (break these → model crashes or won't work)
+
+### Rule 1: d_model must stay the same everywhere
+```
+Embedding output     = 512 ─┐
+Positional encoding  = 512  │
+Encoder input        = 512  │
+Encoder output       = 512  ├── ALL must be the SAME
+Decoder input        = 512  │
+Decoder output       = 512  │
+Cross-attention K,V  = 512 ─┘
+
+Why? Because of residual connections:
+  output = input + sublayer_output
+
+  input = (4, 512)  +  sublayer_output = (4, 512)  → works ✓
+  input = (4, 512)  +  sublayer_output = (4, 256)  → can't add → crash ✗
+```
+
+### Rule 2: d_model must be divisible by n_heads
+```
+✓  d_model=512, n_heads=8  → d_k = 512/8  = 64    (clean split)
+✓  d_model=512, n_heads=4  → d_k = 512/4  = 128   (clean split)
+✗  d_model=512, n_heads=7  → d_k = 512/7  = 73.1  (can't split evenly → crash)
+```
+
+### Rule 3: Source and Target can have different vocab sizes, but d_model must be same
+```
+✓  src_vocab=10000 → embed to 512
+   tgt_vocab=8000  → embed to 512     (different vocab, same d_model → works)
+
+✗  src_embedding = 512
+   tgt_embedding = 256                 (different d_model → cross-attention breaks)
+```
+
+### Rule 4: Encoder output shape must match decoder cross-attention input
+```
+Encoder output (memory):  (batch, src_seq_len, 512)
+                                                 ↑
+Decoder cross-attention expects K, V with:      512 dims
+
+These MUST match — decoder uses encoder output as K and V in cross-attention.
+```
+
+### Rule 5: Causal mask size must match target sequence length
+```
+Target has 5 tokens → mask must be (5, 5)
+Target has 10 tokens → mask must be (10, 10)
+
+Wrong size → masks wrong positions → model sees future words or crashes
+```
+
+### Rule 6: Target input and target labels must be shifted by 1
+```
+Target input (decoder sees):   [<sos>, je, suis, un, étudiant]
+Target labels (correct answer): [je, suis, un, étudiant, <eos>]
+                                  ↑ shifted by 1 position
+
+Why? The model predicts the NEXT word at each position:
+  Given <sos>              → predict "je"
+  Given <sos>, je          → predict "suis"
+  Given <sos>, je, suis    → predict "un"
+
+If not shifted → model just copies input instead of learning to predict
+```
+
+### Rule 7: Positional encoding dimension = d_model
+```
+embedding:           (4, 512)
+positional_encoding: (4, 512)   ← must match for addition
+
+final = embedding + positional_encoding
+
+Different sizes → can't add → crash
+```
+
+## Soft Rules (break these → model works but performs poorly)
+
+### Rule 8: Scale attention by √d_k
+```
+Not strictly required, but without it:
+  Large dot products → softmax saturates → vanishing gradients → bad training
+
+With scaling:    scores / √64 = reasonable range → smooth softmax → healthy gradients
+Without scaling: scores are huge → softmax = [0.99, 0.00, 0.00, 0.01] → can't learn
+```
+
+### Rule 9: Number of encoder layers ≈ number of decoder layers
+```
+Original paper: 6 encoder layers + 6 decoder layers (balanced)
+
+You CAN use different numbers (e.g., 8 encoder + 4 decoder), but balanced is standard.
+```
+
+### Rule 10: FFN inner dimension = 4 × d_model (convention)
+```
+d_model = 512  →  d_ff = 2048  (4 × 512)
+
+This 4× ratio was found to work well in the original paper.
+You can change it, but 4× is the proven default.
+```
+
+## Quick Reference Table
+
+| # | Rule | What | Break it? |
+|---|------|------|-----------|
+| 1 | d_model same everywhere | 512 in = 512 out at every layer | Crash |
+| 2 | d_model ÷ n_heads = integer | 512 ÷ 8 = 64 ✓ | Crash |
+| 3 | Encoder & Decoder same d_model | Both embed to 512 | Crash |
+| 4 | Encoder output matches decoder cross-attn | Both 512 dims | Crash |
+| 5 | Mask size = target seq length | 5 tokens → 5×5 mask | Wrong results |
+| 6 | Target shifted by 1 | Input: `<sos>` + tokens, Label: tokens + `<eos>` | Won't learn |
+| 7 | Positional encoding dim = d_model | Both 512 | Crash |
+| 8 | Scale by √d_k | Divide attention scores | Bad training |
+| 9 | Encoder layers ≈ Decoder layers | 6 + 6 (balanced) | Suboptimal |
+| 10 | d_ff = 4 × d_model | 2048 = 4 × 512 | Suboptimal |
+
+**The one rule to remember: d_model is the backbone — it must be consistent from start to finish across the entire model.**
+
+
+---
+
+# 7. Transformer Inputs, Parameters & Hyperparameters
+
+## What inputs does the Transformer need?
+
+### During Training
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        TRAINING INPUTS                              │
+├──────────────────────┬──────────────────────────────────────────────┤
+│ Input                │ Example                                      │
+├──────────────────────┼──────────────────────────────────────────────┤
+│ src_batch            │ [[12, 45, 7, 892, 2, 0, 0],                 │
+│ (source token IDs    │  [34, 56, 2, 0, 0, 0, 0]]                   │
+│  padded to same len) │  shape: (batch_size, src_seq_len)            │
+├──────────────────────┼──────────────────────────────────────────────┤
+│ tgt_input_batch      │ [[1, 15, 67, 23, 541, 0, 0],                │
+│ (target with <sos>   │  [1, 89, 2, 0, 0, 0, 0]]                    │
+│  at the start)       │  shape: (batch_size, tgt_seq_len)            │
+├──────────────────────┼──────────────────────────────────────────────┤
+│ tgt_target_batch     │ [[15, 67, 23, 541, 2, 0, 0],                │
+│ (target with <eos>   │  [89, 2, 0, 0, 0, 0, 0]]                    │
+│  at the end — labels)│  shape: (batch_size, tgt_seq_len)            │
+├──────────────────────┼──────────────────────────────────────────────┤
+│ tgt_mask             │ [[True, False, False, False],                │
+│ (causal mask to      │  [True, True,  False, False],                │
+│  block future words) │  [True, True,  True,  False],                │
+│                      │  [True, True,  True,  True ]]                │
+│                      │  shape: (tgt_seq_len, tgt_seq_len)           │
+└──────────────────────┴──────────────────────────────────────────────┘
+
+Special token IDs:  0 = <pad>,  1 = <sos>,  2 = <eos>,  3 = <unk>
+```
+
+### During Inference
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                       INFERENCE INPUTS                              │
+├──────────────────────┬──────────────────────────────────────────────┤
+│ Input                │ Example                                      │
+├──────────────────────┼──────────────────────────────────────────────┤
+│ src_tensor           │ [12, 45, 7, 892, 2]                          │
+│ (source sentence     │  shape: (1, src_seq_len)                     │
+│  with <eos>)         │  only ONE sentence, no padding needed        │
+├──────────────────────┼──────────────────────────────────────────────┤
+│ generated tokens     │ starts as [1] (<sos>)                        │
+│ (grows each step)    │ → [1, 15] → [1, 15, 67] → ...               │
+│                      │  shape: (1, current_len) — grows each step   │
+├──────────────────────┼──────────────────────────────────────────────┤
+│ tgt_mask             │ grows with each step:                        │
+│ (causal mask, grows  │  step 1: (1,1)  step 2: (2,2)  step 3: (3,3)│
+│  as output grows)    │                                              │
+└──────────────────────┴──────────────────────────────────────────────┘
+
+No tgt_target_batch needed — there's no correct answer to compare against.
+The model generates freely.
+```
+
+---
+
+## Parameters (learned by the model during training)
+
+These are the **weights** that the model learns. You don't set these — backpropagation updates them automatically.
+
+| Parameter | What it is | Shape | How it's learned |
+|-----------|-----------|-------|------------------|
+| Source Embedding weights | Lookup table: token ID → vector | (src_vocab_size, d_model) | Learns which numbers best represent each source word |
+| Target Embedding weights | Lookup table: token ID → vector | (tgt_vocab_size, d_model) | Learns which numbers best represent each target word |
+| W_Q (Query weights) | Transforms input into Query vectors | (d_model, d_k) per head | Learns what each word should "ask for" |
+| W_K (Key weights) | Transforms input into Key vectors | (d_model, d_k) per head | Learns what each word should "advertise" |
+| W_V (Value weights) | Transforms input into Value vectors | (d_model, d_k) per head | Learns what information each word should "share" |
+| W_O (Output projection) | Combines all heads back together | (d_model, d_model) | Learns how to mix information from all heads |
+| FFN W1 (first layer) | Expands representation | (d_model, d_ff) | Learns complex patterns (expand step) |
+| FFN W2 (second layer) | Compresses back | (d_ff, d_model) | Learns complex patterns (compress step) |
+| FFN biases (b1, b2) | Offset values in FFN | (d_ff), (d_model) | Fine-tunes the FFN transformations |
+| LayerNorm γ (gamma) | Scale factor for normalization | (d_model) | Learns optimal scale for each dimension |
+| LayerNorm β (beta) | Shift factor for normalization | (d_model) | Learns optimal shift for each dimension |
+| Output Head weights | Projects decoder output to vocab | (d_model, tgt_vocab_size) | Learns to pick the right word from vocabulary |
+
+**Example — counting parameters:**
+```
+With d_model=512, n_heads=8, d_ff=2048, n_layers=6, src_vocab=10000, tgt_vocab=8000:
+
+Embeddings:
+  Source embedding:     10000 × 512 = 5,120,000
+  Target embedding:     8000 × 512  = 4,096,000
+
+Per encoder layer (× 6 layers):
+  Self-Attention:       4 × (512 × 512) = 1,048,576    (W_Q, W_K, W_V, W_O)
+  FFN:                  512×2048 + 2048×512 = 2,097,152 (W1, W2)
+  LayerNorm (×2):       2 × (512 + 512) = 2,048         (γ, β for each norm)
+  Subtotal per layer:   ~3.1M
+  All 6 layers:         ~18.9M
+
+Per decoder layer (× 6 layers):
+  Masked Self-Attention: 4 × (512 × 512) = 1,048,576
+  Cross-Attention:       4 × (512 × 512) = 1,048,576
+  FFN:                   2,097,152
+  LayerNorm (×3):        3 × (512 + 512) = 3,072
+  Subtotal per layer:    ~4.2M
+  All 6 layers:          ~25.2M
+
+Output Head:            512 × 8000 = 4,096,000
+
+Total: ~57M parameters (all learned during training)
+```
+
+---
+
+## Hyperparameters (set by YOU before training)
+
+These are the **choices you make** before training starts. The model doesn't learn these — you decide them.
+
+### Model Architecture Hyperparameters
+
+| Hyperparameter | What it controls | Typical value | How to think about it |
+|----------------|-----------------|---------------|----------------------|
+| `d_model` | Size of every vector in the model | 512 | Bigger = model understands more, but slower and needs more data. Must be same everywhere (Rule 1) |
+| `n_heads` | Number of attention heads | 8 | More heads = captures more relationship types. Must divide d_model evenly (Rule 2) |
+| `n_layers` | Number of encoder/decoder layers | 6 | More layers = deeper understanding, but slower and harder to train |
+| `d_ff` | Inner size of feed-forward network | 2048 (4×d_model) | Bigger = more capacity to learn complex patterns |
+| `src_vocab_size` | Number of unique source words | 10000-50000 | Depends on your source language and tokenizer |
+| `tgt_vocab_size` | Number of unique target words | 10000-50000 | Depends on your target language and tokenizer |
+| `max_seq_len` | Maximum sentence length allowed | 512 | Longer = handles bigger sentences, but uses more memory |
+| `dropout` | Randomly turns off neurons during training | 0.1 (10%) | Prevents overfitting — forces model to not rely on any single neuron |
+
+### Training Hyperparameters
+
+| Hyperparameter | What it controls | Typical value | How to think about it |
+|----------------|-----------------|---------------|----------------------|
+| `learning_rate (lr)` | How big each weight update step is | 1e-4 (0.0001) | Too high = model overshoots and diverges. Too low = learns too slowly |
+| `batch_size` | Number of sentence pairs processed together | 32-128 | Bigger = more stable gradients but needs more GPU memory |
+| `n_epochs` | How many times to loop through all training data | 10-100+ | More = better learning, but risk overfitting (memorizing instead of learning) |
+| `betas` | Momentum settings for Adam optimizer | (0.9, 0.98) | Controls how much past gradients influence current update. 0.98 is tuned for transformers |
+| `eps` | Small number to prevent division by zero in Adam | 1e-9 | Just a safety value, rarely needs changing |
+| `max_norm` | Gradient clipping threshold | 1.0 | Caps gradient size to prevent exploding gradients |
+| `label_smoothing` | Softens the target distribution | 0.1 | 0.0 = hard targets (100% on correct word). 0.1 = soft targets (90% correct, 10% spread) |
+| `warmup_steps` | Gradually increase learning rate at start | 4000 | Prevents large unstable updates at the beginning when weights are random |
+
+### How these hyperparameters affect the model:
+
+```
+Small model (fast, less accurate):
+  d_model=128, n_heads=4, n_layers=2, d_ff=512
+  Parameters: ~2M
+  Good for: small datasets, quick experiments, learning
+
+Medium model (balanced):
+  d_model=512, n_heads=8, n_layers=6, d_ff=2048
+  Parameters: ~57M
+  Good for: real translation tasks, moderate datasets
+
+Large model (slow, more accurate):
+  d_model=1024, n_heads=16, n_layers=12, d_ff=4096
+  Parameters: ~300M+
+  Good for: large datasets, production systems, state-of-the-art results
+```
+
+### Parameters vs Hyperparameters — the difference:
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│                                                                  │
+│  Hyperparameters (YOU decide)         Parameters (MODEL learns)  │
+│  ─────────────────────────           ──────────────────────────  │
+│  d_model = 512                       W_Q = [[0.2, 0.8, ...],    │
+│  n_heads = 8                                [0.1, 0.3, ...]]    │
+│  n_layers = 6                        W_K = [[...], [...]]        │
+│  learning_rate = 0.0001              W_V = [[...], [...]]        │
+│  dropout = 0.1                       Embeddings = [[...], ...]   │
+│  batch_size = 32                     FFN weights = [[...], ...]  │
+│                                                                  │
+│  Set BEFORE training                 Updated DURING training     │
+│  Fixed throughout training           Change every epoch          │
+│  Chosen by human (or tuning)         Learned by backpropagation  │
+│                                                                  │
+└──────────────────────────────────────────────────────────────────┘
 ```
