@@ -1,0 +1,32 @@
+LLM/TransformerModels/transformer/trained_enc_dec_model
+
+# Trained models
+LLM/TransformerModels/transformer/trained_enc_dec_model
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment
+.env
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Model artifacts
+*.pt
+*.pth
+*.h5
+*.ckpt
