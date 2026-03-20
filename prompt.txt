@@ -1,0 +1,18 @@
+Explain [CONCEPT] in detail with the following structure:
+
+1. Use ONE running example throughout all sections so I can trace the flow end to end
+2. For every step/component:
+   - What it does (one line)
+   - Why it's needed (what breaks without it)
+   - How it works (with actual numbers, shapes, and intermediate values)
+   - Visual diagrams using ASCII where possible
+3. Show the math with concrete numbers, not just formulas
+4. Add a FAQ section answering common "why" and "how" questions with examples
+5. Add a Rules/Constraints section — what must be followed and what happens if broken
+6. Add an Inputs, Parameters & Hyperparameters section with:
+   - What goes in (with shapes and example values)
+   - What the model learns vs what you set
+   - Typical values and one-line explanation for each
+7. Use simple English — explain like teaching someone, not reading a textbook
+8. Use tables for comparisons and quick references
+9. Convert to PDF when done
