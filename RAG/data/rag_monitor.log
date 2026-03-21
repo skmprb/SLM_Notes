@@ -1,0 +1,11 @@
+2026-03-21 12:36:57,342 | Loading faiss with AVX512 support.
+2026-03-21 12:36:57,343 | Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2026-03-21 12:36:57,344 | Loading faiss with AVX2 support.
+2026-03-21 12:36:57,696 | Successfully loaded faiss with AVX2 support.
+2026-03-21 12:36:58,182 | {"timestamp": "2026-03-21T12:36:58.182766", "query": "What is Artificial Intelligence?", "answer": "LLM not configured. Top retrieved context:\nAI to force us to confront the fundamental question of what makes us human, showing us artificial beings that have the ability to feel , and thus to suffer. ", "num_chunks": 5, "latency_seconds": 0.25, "evaluation": {"relevance": 0.75, "groundedness": 0.896, "coverage": {"total_chunks": 5, "chunks_used": 5, "coverage": 1.0}}}
+2026-03-21 12:37:18,401 | Loading faiss with AVX512 support.
+2026-03-21 12:37:18,402 | Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2026-03-21 12:37:18,402 | Loading faiss with AVX2 support.
+2026-03-21 12:37:18,532 | Successfully loaded faiss with AVX2 support.

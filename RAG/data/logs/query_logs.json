@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp": "2026-03-21T12:36:58.182766",
+    "query": "What is Artificial Intelligence?",
+    "answer": "LLM not configured. Top retrieved context:\nAI to force us to confront the fundamental question of what makes us human, showing us artificial beings that have the ability to feel , and thus to suffer. ",
+    "num_chunks": 5,
+    "latency_seconds": 0.25,
+    "evaluation": {
+      "relevance": 0.75,
+      "groundedness": 0.896,
+      "coverage": {
+        "total_chunks": 5,
+        "chunks_used": 5,
+        "coverage": 1.0
+      }
+    }
+  }
+]

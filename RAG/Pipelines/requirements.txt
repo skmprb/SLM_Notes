@@ -18,3 +18,17 @@ boto3
 cohere
 scikit-learn
 numpy
+
+
+# vector database
+faiss-cpu
+chromadb
+pinecone-client
+weaviate-client
+
+
+# app UI
+fastapi
+uvicorn
+streamlit
+# 

@@ -44,6 +44,7 @@ class EmbeddingGenerator:
         from sklearn.feature_extraction.text import TfidfVectorizer
         vectorizer = TfidfVectorizer()
         embeddings = vectorizer.fit_transform(texts)
+        self._tfidf_vectorizer = vectorizer
         return embeddings.toarray().tolist()
     
     def generate_embeddings(self, chunks: List[Dict], provider: str = "tfidf", batch_size: int = 32, **kwargs) -> List[Dict]:
@@ -61,16 +62,21 @@ class EmbeddingGenerator:
             'bedrock': self.embed_bedrock
         }[provider]
         
-        # Initialize an empty list to store all computed embeddings
-        all_embeddings = []
-        # Process texts in batches to manage memory usage and API rate limits
-        # Loop through the texts list in chunks of size 'batch_size'
-        for i in range(0, len(texts), batch_size):
-            # Extract a batch of texts starting at index i with maximum size of batch_size
-            batch = texts[i:i+batch_size]
-            # Call the selected embedding function on the current batch and extend the results to all_embeddings
-            # **kwargs allows passing additional parameters specific to each embedding provider
-            all_embeddings.extend(embed_fn(batch, **kwargs))
+        if provider == 'tfidf':
+            all_embeddings = embed_fn(texts, **kwargs)
+        else:
+            # Initialize an empty list to store all computed embeddings
+            all_embeddings = []
+            # Process texts in batches to manage memory usage and API rate limits
+            # Loop through the texts list in chunks of size 'batch_size'
+            for i in range(0, len(texts), batch_size):
+                # Extract a batch of texts starting at index i with maximum size of batch_size
+                batch = texts[i:i+batch_size]
+                # Call the selected embedding function on the current batch and extend the results to all_embeddings
+                # **kwargs allows passing additional parameters specific to each embedding provider
+                all_embeddings.extend(embed_fn(batch, **kwargs))
+        
+        
             
         # Combine the original chunks with their corresponding embeddings
         # Iterate through both chunks and embeddings simultaneously using zip

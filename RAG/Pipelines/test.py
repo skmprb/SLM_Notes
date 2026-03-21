@@ -105,3 +105,56 @@ chunks = embedder.generate_embeddings(chunks, provider="tfidf", batch_size=16)
 
 print(f"Generated embeddings for {len(chunks)} chunks")
 print(f"Embedding dim : {len(chunks[0]['embedding'])}")
+
+
+
+
+#------------------------------- Vector store tests ----------------------------
+
+from embedding_generator import EmbeddingGenerator
+from vector_store import Vectorstore
+from TextChunkingSplitting import TextChunker
+from dataCollection import DataCollector
+from dataClean_Processing import DataPreprocessor
+
+collector = DataCollector()
+preprocessor = DataPreprocessor()
+chunker = TextChunker()
+embedder = EmbeddingGenerator()
+store = Vectorstore()
+
+data = collector.collect_url("https://en.wikipedia.org/wiki/Artificial_intelligence")
+cleaned = preprocessor.preprocess(data)
+chunks = chunker.chunk_with_metadata(cleaned)
+chunks = embedder.generate_embeddings(chunks, provider="tfidf")
+
+store.store_faiss(chunks)
+# store.store_chroma(chunks)
+# store.store_pinecone(chunks)
+# store.store_weaviate(chunks)
+
+query = "What is Artificial Intelligence?"
+query_vector = embedder._tfidf_vectorizer.transform([query]).toarray()[0]
+
+results = store.search_faiss(query_vector)
+for r in results:
+    print(f"Score: {r['score']:.4f} | Source: {r['source']} | Type: {r['type']} | Content: {r['content'][:100]}...")
+
+
+from query_engine import QueryEngine
+
+# ... after storing embeddings ...
+
+# Initialize query engine with same embedder & provider
+query_engine = QueryEngine(embedder, provider="tfidf")
+
+# Get query embedding
+query = "What is Artificial Intelligence?"
+query_vector = query_engine.get_query_embedding(query)
+
+# Search
+results = store.search_faiss(query_vector)
+for r in results:
+    print(f"Score: {r['score']:.4f} | Content: {r['content'][:100]}...")
+
+
