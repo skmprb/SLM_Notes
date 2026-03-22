@@ -47,6 +47,13 @@ class EmbeddingGenerator:
         self._tfidf_vectorizer = vectorizer
         return embeddings.toarray().tolist()
     
+    def embed_bm25(self, texts: List[str]) -> List[List[float]]:
+        """BM25 doesn't produce embeddings - it's a scoring function.
+        Store tokenized docs for later BM25 search in similarity_search.py.
+        Returns dummy embeddings (empty) since BM25 scores at query time."""
+        self._bm25_corpus = [t.lower().split() for t in texts]
+        return [[] for _ in texts]  # no embeddings needed
+    
     def generate_embeddings(self, chunks: List[Dict], provider: str = "tfidf", batch_size: int = 32, **kwargs) -> List[Dict]:
         
         # Extract the text content from each chunk dictionary to create a list of strings for embedding
@@ -59,10 +66,11 @@ class EmbeddingGenerator:
             'huggingface': self.embed_huggingface,
             'cohere': self.embed_cohere,
             'tfidf': self.embed_tfidf,
-            'bedrock': self.embed_bedrock
+            'bedrock': self.embed_bedrock,
+            'bm25': self.embed_bm25
         }[provider]
         
-        if provider == 'tfidf':
+        if provider in ('tfidf', 'bm25'):
             all_embeddings = embed_fn(texts, **kwargs)
         else:
             # Initialize an empty list to store all computed embeddings

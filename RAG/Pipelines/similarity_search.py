@@ -1,5 +1,7 @@
 from typing import List, Dict
 import numpy as np
+import math
+from collections import Counter
 
 class SimilaritySearch:
     
@@ -58,9 +60,62 @@ class SimilaritySearch:
             for doc, meta, dist in zip(results['documents'][0], results['metadatas'][0], results['distances'][0])
         ]
     
+    # --- BM25 Search (Keyword-based, no embeddings needed) ---
+    def search_bm25(self, query: str, chunks: List[Dict], top_k: int = 5, k1: float = 1.5, b: float = 0.75) -> List[Dict]:
+        """
+        BM25 (Best Matching 25) - sparse keyword-based ranking
+        Unlike cosine/euclidean, BM25 works on raw text (no embeddings needed)
+        
+        Formula: score(D,Q) = Σ IDF(qi) * (tf * (k1+1)) / (tf + k1 * (1 - b + b * |D|/avgdl))
+        
+        Parameters:
+            k1: term frequency saturation (1.2-2.0 typical, higher = more weight to repeated terms)
+            b:  length normalization (0=no normalization, 1=full normalization, 0.75 typical)
+        """
+        # Tokenize all chunk documents
+        docs = [c['content'].lower().split() for c in chunks]
+        query_terms = query.lower().split()
+        
+        # Compute average document length
+        avgdl = sum(len(d) for d in docs) / len(docs) if docs else 1
+        N = len(docs)
+        
+        # Compute IDF for each query term: log((N - df + 0.5) / (df + 0.5) + 1)
+        df = Counter()  # document frequency: how many docs contain each term
+        for doc in docs:
+            for term in set(doc):
+                df[term] += 1
+        
+        idf = {}
+        for term in query_terms:
+            n = df.get(term, 0)
+            idf[term] = math.log((N - n + 0.5) / (n + 0.5) + 1)
+        
+        # Score each document
+        scores = []
+        for doc in docs:
+            score = 0.0
+            doc_len = len(doc)
+            tf_counter = Counter(doc)
+            for term in query_terms:
+                tf = tf_counter.get(term, 0)
+                numerator = tf * (k1 + 1)
+                denominator = tf + k1 * (1 - b + b * doc_len / avgdl)
+                score += idf.get(term, 0) * (numerator / denominator)
+            scores.append(score)
+        
+        scored_chunks = [{**c, 'score': s} for c, s in zip(chunks, scores)]
+        return sorted(scored_chunks, key=lambda x: x['score'], reverse=True)[:top_k]
+    
     # --- Main Search Method ---
-    def search(self, query_embedding: List[float], chunks: List[Dict] = None, method: str = "cosine", top_k: int = 5, **kwargs) -> List[Dict]:
+    def search(self, query_embedding: List[float] = None, chunks: List[Dict] = None, method: str = "cosine", top_k: int = 5, query: str = None, **kwargs) -> List[Dict]:
         """Unified search across all methods"""
+        
+        # BM25 (keyword-based, no embeddings needed)
+        if method == "bm25":
+            if not query:
+                raise ValueError("BM25 requires 'query' (raw text string), not embeddings")
+            return self.search_bm25(query, chunks, top_k=top_k, **kwargs)
         
         # Vector DB searches
         if method == "faiss":
