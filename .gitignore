@@ -1,7 +1,7 @@
-LLM/TransformerModels/transformer/trained_enc_dec_model
-
 # Trained models
 LLM/TransformerModels/transformer/trained_enc_dec_model
+LLM/TransformerModels/decoder_Only/trained_decoder_only_model
+LLM/TransformerModels/encoder_Only/trained_encoder_only_model
 
 # Python
 __pycache__/

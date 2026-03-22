@@ -255,58 +255,85 @@ AI
 - The encoder processes the input data and generates a representation (embedding) that captures its meaning
 - Used in models like BERT for understanding context and relationships in text
 
-# Encoder Pipeline
+# Encoder-Only Pipeline (BERT, RoBERTa, ALBERT, DistilBERT)
 
-## The Story of Encoder Pipeline: From Raw Text to Understanding
+## Training Pipeline
+`Text Corpus → Tokenization → Embedding → Positional Encoding → Encoder Stack → Training Head → Loss → Backpropagation → Saved Weights`
 
-### Step 1: Input - The Beginning of Understanding
-1. Input: raw text (e.g., "Hello, how are you?")
-- Why: Computers can't understand human language directly - they need structured data
-- What it solves: Bridges the gap between human communication and machine processing
-- How: Takes unstructured text as the starting point for transformation
-- Where: This is the entry point for any NLP task - translation, sentiment analysis, Q&A
+## Inference Pipeline
+`User Text → Tokenization → Embedding → Positional Encoding → Encoder Stack → Output Representation / Embedding / Classification`
+
+## The Story of Encoder-Only Pipeline: From Raw Text to Understanding
+
+### Step 1: Text Corpus - The Beginning of Understanding
+1. Text Corpus: labeled data for fine-tuning (e.g., ("I love this movie", positive)) or unlabeled text for pre-training (MLM)
+- Why: Encoder-only models learn from (text, label) pairs during fine-tuning, and unlabeled text during pre-training via Masked Language Modeling (MLM)
+- What it solves: Provides the training signal — the model learns language structure and task-specific patterns
+- How: Pre-training uses MLM (fill in masked words), fine-tuning uses labeled data (classification, NER, etc.)
+- Where: This is the entry point — no target sequence to generate, just classify/tag/embed the input
 
 ### Step 2: Tokenization - Breaking Down the Language Barrier
-2. Tokenization: split text into tokens (e.g., ["Hello", ",", "how", "are", "you", "?"])
-- Why: Neural networks work with discrete units, not continuous text streams
-- What it solves: Converts variable-length text into manageable, standardized pieces
-- How: Uses algorithms like BPE (Byte Pair Encoding) or WordPiece to split intelligently
-- Where: Essential for all transformer models - BERT, GPT, T5 all start here
+2. Tokenization: split text into tokens and wrap with special tokens → [CLS] tokens... [SEP]
+- Why: Neural networks need numbers, not strings. [CLS] token aggregates information from all tokens via self-attention and becomes the sentence representation for classification
+- What it solves: Converts text into token IDs with BERT-style special tokens ([PAD], [CLS], [SEP], [UNK], [MASK])
+- How: Uses algorithms like BPE or WordPiece. Single vocabulary (not separate src/tgt like encoder-decoder)
+- Where: No `<sos>` token — encoder-only doesn't generate tokens, unlike decoder models
 
 ### Step 3: Embedding - Giving Meaning to Symbols
-3. Embedding: convert tokens to dense vectors (e.g., 768-dimensional embeddings)
-- Why: Tokens are just symbols; we need numerical representations that capture semantic meaning
-- What it solves: Maps discrete tokens to continuous vector space where similar words are close
-- How: Learned lookup table that maps each token to a high-dimensional vector
-- Where: The foundation for all downstream processing - without embeddings, no learning happens
+3. Embedding: convert token IDs to dense vectors scaled by √(d_model)
+- Why: Token IDs are arbitrary integers with no semantic meaning — embeddings place tokens in continuous space where similar words are nearby
+- What it solves: Maps discrete tokens to high-dimensional vectors (e.g., 256 or 768 dimensions)
+- How: Learned lookup table (nn.Embedding). Only one embedding layer needed (single vocabulary)
+- Where: Output shape: (batch, seq_len, d_model) — each token is now a dense vector
 
 ### Step 4: Positional Encoding - Adding the Dimension of Order
-4. Positional Encoding: add information about token positions in the sequence
-- Why: Unlike RNNs, transformers process all tokens simultaneously and lose order information
-- What it solves: Restores crucial positional information that affects meaning ("dog bites man" vs "man bites dog")
-- How: Adds sinusoidal patterns or learned position vectors to embeddings
-- Where: Critical for understanding syntax, grammar, and context-dependent meanings
+4. Positional Encoding: add sinusoidal position information to embeddings
+- Why: Transformers process all tokens in parallel — no inherent notion of order. "not good" ≠ "good not"
+- What it solves: Restores positional information. Encoder-only is BIDIRECTIONAL — no causal mask, every token sees every other token
+- How: Sinusoidal functions (or learned embeddings in BERT). Added to embeddings, not concatenated
+- Where: This is the key advantage — [CLS] can attend to the entire sentence in both directions
 
-# Step 5: Multi-Head Self-Attention - The Heart of Understanding
-5. Multi-Head Self-Attention: compute attention scores to capture relationships between tokens
-- Why: Words don't exist in isolation - their meaning depends on context and relationships
-- What it solves: Captures long-range dependencies and contextual relationships simultaneously
-- How: Each token "looks at" all other tokens and decides how much attention to pay to each
-- Where: This is what makes transformers powerful - parallel processing of all relationships
+### Step 5: Encoder Stack - The Heart of Understanding
+5. Encoder Stack: N layers of (Multi-Head Self-Attention + Feed-Forward Network) with residual connections + LayerNorm
+- Why: Self-attention builds contextualized representations — same word gets different vectors in different contexts. Bidirectional attention (no mask!) means full context in both directions. Stacking layers = deeper understanding (syntax → semantics)
+- What it solves: Captures long-range dependencies bidirectionally. Token 3 sees tokens 1,2,3,4,5... (unlike decoder which only sees 1,2,3)
+- How: Each layer has 2 sub-layers: (1) Multi-Head Self-Attention (Q=K=V=input), (2) Position-wise FFN (Linear → ReLU → Linear)
+- Where: [CLS] output at position 0 aggregates the entire sentence's meaning. Output shape unchanged: (batch, seq_len, d_model) but deeply contextualized
 
-### Step 6: Feed-Forward Network - Refining the Understanding
-6. Feed-Forward Network: apply non-linear transformations to the attention output
-- Why: Attention captures relationships, but we need to process and refine this information
-- What it solves: Adds computational depth and non-linearity to transform attention patterns
-- How: Two linear layers with activation function (usually ReLU or GELU) in between
-- Where: Applied to each position independently, allowing for position-specific processing
+### Step 6: Training Head - Adapting to the Task
+6. Training Head: task-specific layer on top of encoder output
+- Why: The encoder produces general-purpose representations — the head adapts them to a specific task. For classification, only the [CLS] token's output is needed (it has seen the whole sentence)
+- What it solves: Classification → Linear(d_model, n_classes) on [CLS] output. NER → Linear(d_model, n_tags) on all token outputs. MLM → Linear(d_model, vocab_size) on masked tokens
+- How: Simple head (Dropout → Linear → Tanh → Linear) — the encoder does the heavy lifting
+- Where: Output: (batch, n_classes) → one prediction per input sentence
 
-### Step 7: Output - The Final Understanding
-7. Output: contextualized embeddings for each token (e.g., for "Hello", "how", "are", "you", "?")
-- Why: We need rich representations that capture both individual token meaning and contextual relationships
-- What it solves: Provides deep, context-aware representations ready for downstream tasks
-- How: Each output embedding contains information about the token itself and its relationship to all other tokens
-- Where: These embeddings can be used for classification, generation, similarity matching, or any NLP task
+### Step 7: Loss - Measuring Classification Error
+7. Loss: Cross-Entropy Loss comparing predicted class probabilities vs true label
+- Why: We need a single number to tell the model how wrong it is. -log(probability of correct class)
+- What it solves: Much simpler than seq2seq loss — one prediction per sentence, not per token. No ignore_index needed (no padding in labels)
+- How: CrossEntropyLoss on (batch, n_classes) logits vs (batch,) labels
+- Where: If model is confident and correct → low loss. If wrong → high loss
+
+### Step 8: Backpropagation & Training - Learning from Mistakes
+8. Backpropagation: compute gradients of loss w.r.t. all parameters, then update weights
+- Why: The loss tells us how wrong the model is, gradients tell us the direction to adjust each parameter
+- What it solves: Full model assembled: Embedding + PE + Encoder + Classification Head. Padding mask ensures padded tokens don't affect attention
+- How: Forward → Loss → loss.backward() → clip_grad_norm → optimizer.step()
+- Where: Training loop runs for N epochs until accuracy converges (~100% on small datasets)
+
+### Step 9: Saved Weights - Persisting the Trained Model
+9. Saved Weights: save model weights (.pth), config (.json), tokenizer vocab (.json), and label mapping (.json)
+- Why: Training is expensive — save once, load for inference without retraining
+- What it solves: Complete model = Weights + Config + Vocab + Labels. Can be shared, deployed, or fine-tuned further
+- How: torch.save(model.state_dict()) for weights, json.dump for config/vocab/labels
+- Where: This completes the Training Pipeline
+
+### Step 10: Inference - Classification & Embeddings
+10. Inference: load saved model and use for classification, embeddings, or similarity
+- Why: model.eval() + torch.no_grad() disables dropout and skips gradient computation
+- What it solves: Classification (sentiment prediction), Sentence Embeddings ([CLS] output for similarity/retrieval)
+- How: Single forward pass — no autoregressive loop! Unlike decoder models, encoder-only runs ONCE per input
+- Where: [CLS] → Classification Head → softmax → predicted class, OR [CLS] output directly → cosine similarity for retrieval
 
 
 # decoder
